@@ -1,0 +1,139 @@
+package backendtest;
+
+import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author Brent Nielson
+ */
+public class <classname>
+{
+
+    //table columns go here
+    public int <pkid> =0;
+
+    private PreparedStatement ps; // To make the inserts and updates easier
+    
+    
+
+    //Loads person data from the database using the personId number
+    public void Load<classname>(int ID)
+    {
+        String query = "SELECT * FROM <tablename> WHERE <pkid>=" + ID;
+        ResultSet rs = MySQLInterface.ExecuteQuery(query);
+
+        try
+        {
+            rs.next();
+            <pkid> = rs.getInt("<pkid>");            
+            
+        }
+        catch (Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+
+    }
+
+    public String ToString()
+    {
+        return "";
+    }
+
+    public void Save<classname>()
+    {
+        if (<pkid> == 0) //new  
+        {
+            try
+            {
+                String sql = "insert into <tablename> ()"
+                        + " values ()";
+                ps = MySQLInterface.dbConn.prepareStatement(sql);//prepared statements use variable places defined by ?s, indexed starting at 1
+
+                //ps vars
+                //ps.set? = ?
+
+                if (!ps.execute())
+                {
+                    System.out.println("Error while adding new <tablename>");
+                }
+            }
+            catch (SQLException ex)
+            {
+                ex.printStackTrace();
+            }
+
+        }
+        else //update
+        {
+            try
+            {
+                String sql = "UPDATE <tablename> SET "                        
+                        + "WHERE <pkid>='?'";
+                ps = MySQLInterface.dbConn.prepareStatement(sql);//prepared statements use variable places defined by ?s, indexed starting at 1
+                
+                ps.setInt(1, <pkid>);
+
+                if (!ps.execute())
+                {
+                    System.out.println("Error while updating <tablename> with id: " + <pkid>);
+                }
+            }
+            catch (SQLException ex)
+            {
+                System.out.println("Error while updating or inserting new <tablename>: " + ex.getMessage());
+                ex.printStackTrace();
+            }
+
+        }
+
+        if (<pkid> == 0)
+        {
+            ResultSet rs = MySQLInterface.ExecuteQuery("SELECT LAST_INSERT_ID() LID;");
+            try
+            {
+                rs.next();
+                <pkid> = rs.getInt("LID");
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+    }
+
+    //Static method useful for retrieving all the data in the table and creating an object for each
+    // It then returns an array of objects
+    public static <classname>[] get<classname>()
+    {
+        ArrayList<<classname>> <tablename> = new ArrayList<>();
+        try
+        {
+            String query = "select <pkid> from <tablename>;";
+            ResultSet rs;
+            rs = MySQLInterface.dbConn.createStatement().executeQuery(query);
+            
+            while (rs.next())
+            {
+                <classname> temp = new <classname>();
+                temp.<pkid>=rs.getInt("<pkid>");
+                
+                //add the object into the ArrayList for later use
+                <tablename>.add(temp);
+
+            }
+
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("Error while retrieve all the <classname> data from the table: " + ex.getMessage());
+        }
+
+        //return our ArrayList as an array
+        <classname>[] objects = <tablename>.toArray(new <classname>[<tablename>.size()]); //convert the arraylist to an array of objects
+        return objects;
+    }
+}
