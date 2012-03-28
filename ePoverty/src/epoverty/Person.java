@@ -64,7 +64,7 @@ public class Person {
 
     }
 
-    
+    //
     public void LoadPersonWhere(String[] fields, String[] values) throws Exception {
 
         //create query
@@ -201,11 +201,14 @@ public class Person {
     public static Person[] getPersons() {
         ArrayList<Person> persons = new ArrayList<>();
         try {
-            String query = "select personId,firstName,middleName,lastName,phoneNumber,emailAddress,addressStreet,addressCity,addressState,addressZip,password,photo from persons;";
+            System.out.println( "Getting ready to query db" );
+            String query = "select * from persons;";
             ResultSet rs;
-            rs = MySQLInterface.dbConn.createStatement().executeQuery(query);
+            rs = MySQLInterface.ExecuteQuery(query);
+            System.out.println( "Sent query" );
             String name;
             while (rs.next()) {
+                System.out.println( "Retrieving person" );
                 Person tempPerson = new Person();
                 tempPerson.personID = rs.getInt("personId");
                 tempPerson.firstName = rs.getString("firstName");

@@ -12,12 +12,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.ListSelectionModel;
-import javax.swing.RowFilter;
+import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileFilter;
@@ -229,13 +224,14 @@ public class MainWindow extends javax.swing.JFrame
         expeditionArrivalDate = new com.toedter.calendar.JDateChooser();
         contentContainer = new javax.swing.JPanel();
         loginPanel = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        ePovertyLogoLogin = new javax.swing.JLabel();
         loginPanelForm = new javax.swing.JPanel();
         emailLabelLogin = new javax.swing.JLabel();
         passwordLabelLogin = new javax.swing.JLabel();
         emailFieldLogin = new javax.swing.JTextField();
         passwordFieldLogin = new javax.swing.JPasswordField();
         loginButton = new javax.swing.JButton();
-        ePovertyLogoLogin = new javax.swing.JLabel();
         mainPanel = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         adminPanel = new javax.swing.JPanel();
@@ -608,10 +604,13 @@ public class MainWindow extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 700, 600));
-        setMaximizedBounds(new java.awt.Rectangle(0, 0, 500, 400));
-        setResizable(false);
 
         contentContainer.setLayout(new java.awt.CardLayout());
+
+        loginPanel.setLayout(new java.awt.GridBagLayout());
+
+        ePovertyLogoLogin.setFont(new java.awt.Font("MS PGothic", 0, 48)); // NOI18N
+        ePovertyLogoLogin.setText("ePoverty");
 
         loginPanelForm.setBorder(javax.swing.BorderFactory.createTitledBorder("Log In"));
         loginPanelForm.setToolTipText("");
@@ -672,34 +671,36 @@ public class MainWindow extends javax.swing.JFrame
                 .addContainerGap(54, Short.MAX_VALUE))
         );
 
-        ePovertyLogoLogin.setFont(new java.awt.Font("MS PGothic", 0, 48)); // NOI18N
-        ePovertyLogoLogin.setText("ePoverty");
-
-        javax.swing.GroupLayout loginPanelLayout = new javax.swing.GroupLayout(loginPanel);
-        loginPanel.setLayout(loginPanelLayout);
-        loginPanelLayout.setHorizontalGroup(
-            loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(loginPanelLayout.createSequentialGroup()
-                .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(loginPanelLayout.createSequentialGroup()
-                        .addGap(271, 271, 271)
-                        .addComponent(loginPanelForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(loginPanelLayout.createSequentialGroup()
-                        .addGap(301, 301, 301)
-                        .addComponent(ePovertyLogoLogin)))
-                .addContainerGap(725, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 260, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(loginPanelForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addGap(30, 30, 30)
+                            .addComponent(ePovertyLogoLogin)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
-        loginPanelLayout.setVerticalGroup(
-            loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(loginPanelLayout.createSequentialGroup()
-                .addGap(102, 102, 102)
-                .addComponent(ePovertyLogoLogin)
-                .addGap(39, 39, 39)
-                .addComponent(loginPanelForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(251, Short.MAX_VALUE))
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 323, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(ePovertyLogoLogin)
+                    .addGap(39, 39, 39)
+                    .addComponent(loginPanelForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         loginPanelForm.getAccessibleContext().setAccessibleName("");
+
+        loginPanel.add(jPanel4, new java.awt.GridBagConstraints());
 
         contentContainer.add(loginPanel, "card2");
 
@@ -730,7 +731,7 @@ public class MainWindow extends javax.swing.JFrame
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(575, Short.MAX_VALUE))
+                .addContainerGap(990, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -795,7 +796,7 @@ public class MainWindow extends javax.swing.JFrame
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(ManageAccountsIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(401, Short.MAX_VALUE))
+                .addContainerGap(816, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -825,7 +826,7 @@ public class MainWindow extends javax.swing.JFrame
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(256, Short.MAX_VALUE))
+                .addContainerGap(198, Short.MAX_VALUE))
         );
 
         jPanel3.add(adminPanel, "card2");
@@ -846,7 +847,7 @@ public class MainWindow extends javax.swing.JFrame
         donorsTab.setLayout(donorsTabLayout);
         donorsTabLayout.setHorizontalGroup(
             donorsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 787, Short.MAX_VALUE)
+            .addGap(0, 1117, Short.MAX_VALUE)
         );
         donorsTabLayout.setVerticalGroup(
             donorsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -859,7 +860,7 @@ public class MainWindow extends javax.swing.JFrame
         fundraiserTab.setLayout(fundraiserTabLayout);
         fundraiserTabLayout.setHorizontalGroup(
             fundraiserTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 787, Short.MAX_VALUE)
+            .addGap(0, 1117, Short.MAX_VALUE)
         );
         fundraiserTabLayout.setVerticalGroup(
             fundraiserTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -872,7 +873,7 @@ public class MainWindow extends javax.swing.JFrame
         adminTab.setLayout(adminTabLayout);
         adminTabLayout.setHorizontalGroup(
             adminTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 787, Short.MAX_VALUE)
+            .addGap(0, 1117, Short.MAX_VALUE)
         );
         adminTabLayout.setVerticalGroup(
             adminTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -938,9 +939,9 @@ public class MainWindow extends javax.swing.JFrame
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 247, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 577, Short.MAX_VALUE)
                         .addComponent(jButton1))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1085, Short.MAX_VALUE))
                 .addContainerGap())
         );
         manageUsersTabLayout.setVerticalGroup(
@@ -969,7 +970,7 @@ public class MainWindow extends javax.swing.JFrame
                     .addGroup(peoplePanelLayout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(personTabPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(personTabPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1206, Short.MAX_VALUE))
                 .addContainerGap())
         );
         peoplePanelLayout.setVerticalGroup(
@@ -1052,7 +1053,7 @@ public class MainWindow extends javax.swing.JFrame
                 .addGroup(expeditionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(expeditionPanelLayout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 710, Short.MAX_VALUE))
+                        .addGap(0, 1129, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, expeditionPanelLayout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1061,9 +1062,9 @@ public class MainWindow extends javax.swing.JFrame
                         .addComponent(jButton5)
                         .addGap(89, 89, 89)
                         .addComponent(createExpeditionButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 511, Short.MAX_VALUE)
                         .addComponent(manageExpeditionButton))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 787, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1206, Short.MAX_VALUE))
                 .addContainerGap())
         );
         expeditionPanelLayout.setVerticalGroup(
@@ -1144,16 +1145,16 @@ public class MainWindow extends javax.swing.JFrame
                 .addGroup(AccountsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(AccountsPanelLayout.createSequentialGroup()
                         .addComponent(AccountsBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 710, Short.MAX_VALUE))
+                        .addGap(0, 1129, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AccountsPanelLayout.createSequentialGroup()
-                        .addGap(0, 680, Short.MAX_VALUE)
+                        .addGap(0, 1099, Short.MAX_VALUE)
                         .addComponent(accountsCreateAccountButton)))
                 .addContainerGap())
             .addGroup(AccountsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(AccountsPanelLayout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(AccountsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 787, Short.MAX_VALUE)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1206, Short.MAX_VALUE)
                         .addGroup(AccountsPanelLayout.createSequentialGroup()
                             .addComponent(AccountsSearchjLabel)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1193,12 +1194,12 @@ public class MainWindow extends javax.swing.JFrame
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 807, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(ePovertyLogo)))
-                .addGap(429, 429, 429))
+                .addContainerGap()
+                .addComponent(ePovertyLogo)
+                .addContainerGap())
+            .addGroup(mainPanelLayout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1246,8 +1247,10 @@ public class MainWindow extends javax.swing.JFrame
         CardLayout cl = ( CardLayout ) jPanel3.getLayout();
         DefaultTableModel model = ( DefaultTableModel ) jTable1.getModel();
         model.getDataVector().removeAllElements();
+        System.out.println( "Removed persons from list" );
         Person[] persons = Person.getPersons();
         for ( Person person : persons ) {
+            System.out.println( "Added Row" );
             model.addRow( person.jTree() );
         }
 
@@ -1564,7 +1567,10 @@ public class MainWindow extends javax.swing.JFrame
 
             public void run()
             {
-                new MainWindow().setVisible( true );
+                MainWindow win = new MainWindow();
+                win.setExtendedState( win.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+                win.setVisible( true );
+                
             }
 
         } );
@@ -1635,6 +1641,7 @@ public class MainWindow extends javax.swing.JFrame
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

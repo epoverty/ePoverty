@@ -23,12 +23,12 @@ public class Session {
     public static final int ADMIN_TYPE = 4;
     
     
-    static {
-        currentSession = new Session();
-    }
+    
     
     public static Session getCurrentSession()
     {
+        if (currentSession == null)
+            currentSession = new Session();
         return currentSession;
     }
     

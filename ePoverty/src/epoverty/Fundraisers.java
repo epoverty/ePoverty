@@ -19,7 +19,6 @@ public class Fundraisers
     public float raiseGoal = 0;
     public float raised = 0;
     private PreparedStatement ps; // To make the inserts and updates easier
-    
     public Person person;
 
     //Loads person data from the database using the personId number
@@ -33,13 +32,13 @@ public class Fundraisers
             rs.next();
             fundraiserId = rs.getInt("fundraiserId");
             personId = rs.getInt("personId");
-            expeditionId=rs.getInt("expeditionId");
-            raiseGoal=rs.getFloat("raiseGoal");
-            raised=rs.getFloat("raiseGoal");
+            expeditionId = rs.getInt("expeditionId");
+            raiseGoal = rs.getFloat("raiseGoal");
+            raised = rs.getFloat("raiseGoal");
+            person = new Person();
             person.LoadPerson(personId);
-            
-        }
-        catch (Exception ex)
+
+        } catch (Exception ex)
         {
             System.out.println(ex.getMessage());
         }
@@ -60,43 +59,34 @@ public class Fundraisers
                 String sql = "insert into fundraisers (personID,expeditionId,raiseGoal,raised)"
                         + " values (?, ?, ?, ?)";
                 ps = MySQLInterface.dbConn.prepareStatement(sql);//prepared statements use variable places defined by ?s, indexed starting at 1
-                
+
                 ps.setInt(1, personId);
                 ps.setInt(2, expeditionId);
                 ps.setFloat(3, raiseGoal);
                 ps.setFloat(4, raised);
 
-                if (!ps.execute())
-                {
-                    System.out.println("Error while adding new fundraiser");
-                }
-            }
-            catch (SQLException ex)
+                MySQLInterface.ExecutePreparedStatement(ps);
+            } catch (SQLException ex)
             {
                 ex.printStackTrace();
             }
 
-        }
-        else //update a fundraiser
+        } else //update a fundraiser
         {
             try
             {
-                String sql = "UPDATE fundraisers SET personID='?', expeditionId='?', raiseGoal='?', raised='?'"                        
+                String sql = "UPDATE fundraisers SET personID='?', expeditionId='?', raiseGoal='?', raised='?'"
                         + " WHERE fundraiserId='?'";
                 ps = MySQLInterface.dbConn.prepareStatement(sql);//prepared statements use variable places defined by ?s, indexed starting at 1
-                
+
                 ps.setInt(1, personId);
                 ps.setInt(2, expeditionId);
                 ps.setFloat(3, raiseGoal);
                 ps.setFloat(4, raised);
                 ps.setInt(5, fundraiserId);
 
-                if (!ps.execute())
-                {
-                    System.out.println("Error while updating fundraiser with id: " + fundraiserId);
-                }
-            }
-            catch (SQLException ex)
+                MySQLInterface.ExecutePreparedStatement(ps);
+            } catch (SQLException ex)
             {
                 System.out.println("Error while updating or inserting new fundraiser: " + ex.getMessage());
                 ex.printStackTrace();
@@ -111,8 +101,7 @@ public class Fundraisers
             {
                 rs.next();
                 fundraiserId = rs.getInt("LID");
-            }
-            catch (Exception ex)
+            } catch (Exception ex)
             {
             }
         }
@@ -127,22 +116,22 @@ public class Fundraisers
         {
             String query = "select fundraiserId,personId from persons;";
             ResultSet rs;
-            rs = MySQLInterface.dbConn.createStatement().executeQuery(query);
-            
+            rs = MySQLInterface.ExecuteQuery(query);
+
             while (rs.next())
             {
                 Fundraisers temp = new Fundraisers();
-                temp.fundraiserId=rs.getInt("fundraiserId");
-                temp.personId=rs.getInt("personId");
+                temp.fundraiserId = rs.getInt("fundraiserId");
+                temp.personId = rs.getInt("personId");
+                temp.person = new Person();
                 temp.person.LoadPerson(temp.personId);
-                
+
                 //add the Person object into the ArrayList for later use
                 fundraisers.add(temp);
 
             }
 
-        }
-        catch (SQLException ex)
+        } catch (SQLException ex)
         {
             System.out.println("Error while retrieve all the people from the Persons table: " + ex.getMessage());
         }
