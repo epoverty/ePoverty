@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
 
 /**
  *
- * @author Mike Larsen
+ * @author Mike Larse
  */
 public class Accounts {
     
