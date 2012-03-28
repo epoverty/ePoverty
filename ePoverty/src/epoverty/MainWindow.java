@@ -247,14 +247,18 @@ public class MainWindow extends javax.swing.JFrame
         jLabel2 = new javax.swing.JLabel();
         ManageAccountsIcon = new javax.swing.JLabel();
         peoplePanel = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        personTabPane = new javax.swing.JTabbedPane();
+        donorsTab = new javax.swing.JPanel();
+        fundraiserTab = new javax.swing.JPanel();
+        adminTab = new javax.swing.JPanel();
+        manageUsersTab = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
         expeditionPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -303,7 +307,7 @@ public class MainWindow extends javax.swing.JFrame
 
         emailField.setText("jTextField2");
 
-        photoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backendtest/noimage.jpg"))); // NOI18N
+        photoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/epoverty/noimage.jpg"))); // NOI18N
         photoLabel.setText("Change Photo");
         photoLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         photoLabel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -474,7 +478,7 @@ public class MainWindow extends javax.swing.JFrame
                 .addGroup(viewPersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(personIdLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(addressPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(viewPersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -692,7 +696,7 @@ public class MainWindow extends javax.swing.JFrame
                 .addComponent(ePovertyLogoLogin)
                 .addGap(39, 39, 39)
                 .addComponent(loginPanelForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(185, Short.MAX_VALUE))
+                .addContainerGap(251, Short.MAX_VALUE))
         );
 
         loginPanelForm.getAccessibleContext().setAccessibleName("");
@@ -703,14 +707,14 @@ public class MainWindow extends javax.swing.JFrame
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Reports"));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backendtest/peopleManage.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/epoverty/peopleManage.png"))); // NOI18N
         jLabel3.setText("<html><b>Manage People</b></html>");
         jLabel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backendtest/peopleManage.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/epoverty/peopleManage.png"))); // NOI18N
         jLabel4.setText("<html><b>Manage People</b></html>");
         jLabel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -726,7 +730,7 @@ public class MainWindow extends javax.swing.JFrame
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(571, Short.MAX_VALUE))
+                .addContainerGap(575, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -735,12 +739,12 @@ public class MainWindow extends javax.swing.JFrame
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Management"));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backendtest/peopleManage.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/epoverty/peopleManage.png"))); // NOI18N
         jLabel1.setText("<html><b>Manage People</b></html>");
         jLabel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -752,7 +756,7 @@ public class MainWindow extends javax.swing.JFrame
             }
         });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backendtest/expeditionManage.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/epoverty/expeditionManage.png"))); // NOI18N
         jLabel2.setText("<html><b>Manage Expeditions</b></html>");
         jLabel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -765,7 +769,7 @@ public class MainWindow extends javax.swing.JFrame
         });
 
         ManageAccountsIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ManageAccountsIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backendtest/money_64.png"))); // NOI18N
+        ManageAccountsIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/epoverty/money_64.png"))); // NOI18N
         ManageAccountsIcon.setText("<html><br><b>Manage Accounts</b></html>");
         ManageAccountsIcon.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         ManageAccountsIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -826,7 +830,58 @@ public class MainWindow extends javax.swing.JFrame
 
         jPanel3.add(adminPanel, "card2");
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Manage Users"));
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/epoverty/back.png"))); // NOI18N
+        jLabel6.setText("<html><b> Back  &nbsp;</b></html>");
+        jLabel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
+
+        personTabPane.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+
+        javax.swing.GroupLayout donorsTabLayout = new javax.swing.GroupLayout(donorsTab);
+        donorsTab.setLayout(donorsTabLayout);
+        donorsTabLayout.setHorizontalGroup(
+            donorsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 787, Short.MAX_VALUE)
+        );
+        donorsTabLayout.setVerticalGroup(
+            donorsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 427, Short.MAX_VALUE)
+        );
+
+        personTabPane.addTab("Donors", donorsTab);
+
+        javax.swing.GroupLayout fundraiserTabLayout = new javax.swing.GroupLayout(fundraiserTab);
+        fundraiserTab.setLayout(fundraiserTabLayout);
+        fundraiserTabLayout.setHorizontalGroup(
+            fundraiserTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 787, Short.MAX_VALUE)
+        );
+        fundraiserTabLayout.setVerticalGroup(
+            fundraiserTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 427, Short.MAX_VALUE)
+        );
+
+        personTabPane.addTab("Fundraisers", fundraiserTab);
+
+        javax.swing.GroupLayout adminTabLayout = new javax.swing.GroupLayout(adminTab);
+        adminTab.setLayout(adminTabLayout);
+        adminTabLayout.setHorizontalGroup(
+            adminTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 787, Short.MAX_VALUE)
+        );
+        adminTabLayout.setVerticalGroup(
+            adminTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 427, Short.MAX_VALUE)
+        );
+
+        personTabPane.addTab("Admins", adminTab);
+
+        manageUsersTab.setBorder(javax.swing.BorderFactory.createTitledBorder("Manage Users"));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -870,14 +925,14 @@ public class MainWindow extends javax.swing.JFrame
             }
         });
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout manageUsersTabLayout = new javax.swing.GroupLayout(manageUsersTab);
+        manageUsersTab.setLayout(manageUsersTabLayout);
+        manageUsersTabLayout.setHorizontalGroup(
+            manageUsersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(manageUsersTabLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(manageUsersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(manageUsersTabLayout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -888,11 +943,11 @@ public class MainWindow extends javax.swing.JFrame
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        manageUsersTabLayout.setVerticalGroup(
+            manageUsersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(manageUsersTabLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(manageUsersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
@@ -902,15 +957,7 @@ public class MainWindow extends javax.swing.JFrame
                 .addContainerGap())
         );
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/epoverty/back.png"))); // NOI18N
-        jLabel6.setText("<html><b> Back  &nbsp;</b></html>");
-        jLabel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel6MouseClicked(evt);
-            }
-        });
+        personTabPane.addTab("Manage Users", manageUsersTab);
 
         javax.swing.GroupLayout peoplePanelLayout = new javax.swing.GroupLayout(peoplePanel);
         peoplePanel.setLayout(peoplePanelLayout);
@@ -919,8 +966,10 @@ public class MainWindow extends javax.swing.JFrame
             .addGroup(peoplePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(peoplePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(peoplePanelLayout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(personTabPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         peoplePanelLayout.setVerticalGroup(
@@ -929,8 +978,8 @@ public class MainWindow extends javax.swing.JFrame
                 .addContainerGap()
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addComponent(personTabPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         jPanel3.add(peoplePanel, "card3");
@@ -1179,6 +1228,7 @@ public class MainWindow extends javax.swing.JFrame
     private void loginButtonActionPerformed( java.awt.event.ActionEvent evt )//GEN-FIRST:event_loginButtonActionPerformed
     {//GEN-HEADEREND:event_loginButtonActionPerformed
         Session.getCurrentSession().authenticate( emailFieldLogin.getText(), new String( passwordFieldLogin.getPassword() ) );
+        
 
         if ( Session.getCurrentSession().getAccessType() != Session.UNAUTHORIZED ) {
 
@@ -1531,12 +1581,14 @@ public class MainWindow extends javax.swing.JFrame
     private javax.swing.JButton accountsCreateAccountButton;
     private javax.swing.JPanel addressPanel;
     private javax.swing.JPanel adminPanel;
+    private javax.swing.JPanel adminTab;
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton changePassButton;
     private javax.swing.JTextField cityField;
     private javax.swing.JLabel cityLabel;
     private javax.swing.JPanel contentContainer;
     private javax.swing.JButton createExpeditionButton;
+    private javax.swing.JPanel donorsTab;
     private javax.swing.JLabel ePovertyLogo;
     private javax.swing.JLabel ePovertyLogoLogin;
     private javax.swing.JTextField emailField;
@@ -1556,6 +1608,7 @@ public class MainWindow extends javax.swing.JFrame
     private javax.swing.JButton expeditionSaveButton;
     private javax.swing.JTextField firstNameField;
     private javax.swing.JLabel firstNameLabel;
+    private javax.swing.JPanel fundraiserTab;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
@@ -1582,7 +1635,6 @@ public class MainWindow extends javax.swing.JFrame
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1598,12 +1650,14 @@ public class MainWindow extends javax.swing.JFrame
     private javax.swing.JPanel loginPanelForm;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JButton manageExpeditionButton;
+    private javax.swing.JPanel manageUsersTab;
     private javax.swing.JTextField middleNameField;
     private javax.swing.JLabel middleNameLabel;
     private javax.swing.JPasswordField passwordFieldLogin;
     private javax.swing.JLabel passwordLabelLogin;
     private javax.swing.JPanel peoplePanel;
     private javax.swing.JLabel personIdLabel;
+    private javax.swing.JTabbedPane personTabPane;
     private javax.swing.JTextField phoneField;
     private javax.swing.JLabel phoneLabel;
     private javax.swing.JLabel photoLabel;
