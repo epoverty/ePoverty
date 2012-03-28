@@ -5,12 +5,12 @@ package epoverty;
  *
  * @author Brent Nielson
  */
+import com.mysql.jdbc.PreparedStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.PreparedStatement;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Formatter;
@@ -35,7 +35,7 @@ public class MySQLInterface
     {
         try
         {
-
+            
             dbConn = DriverManager.getConnection(url, user, pass);
             return true;
         }
@@ -56,32 +56,6 @@ public class MySQLInterface
         catch (SQLException ex)
         {
             Logger.getLogger(MySQLInterface.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public static boolean ExecutePreparedStatement(PreparedStatement stmt)
-    {
-        return ExecutePreparedStatement(stmt, true);
-    }
-
-    private static boolean ExecutePreparedStatement(PreparedStatement stmt, boolean firstTry)
-    {
-        try
-        {
-            return stmt.execute();
-        }
-        catch (SQLException ex) //
-        {
-            if (ConnectToDatabase() && firstTry)
-            {
-                return ExecutePreparedStatement(stmt, false);
-            }
-            else
-            {
-                Logger.getLogger(MySQLInterface.class.getName()).log(Level.SEVERE, null, ex);
-                System.out.println(ex.getErrorCode());
-                return false;
-            }
         }
     }
 
@@ -135,7 +109,7 @@ public class MySQLInterface
             }
             else
             {
-                Logger.getLogger(MySQLInterface.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(MySQLInterface.class.getName()).log(Level.SEVERE, null, ex);                
                 return null;
             }
         }

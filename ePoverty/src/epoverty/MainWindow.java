@@ -12,7 +12,12 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.*;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.RowFilter;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileFilter;
@@ -39,8 +44,7 @@ public class MainWindow extends javax.swing.JFrame
     {
         initComponents();
 
-        
-        
+        this.setSize( 800, 600 );
         jTable1.setSelectionMode( ListSelectionModel.SINGLE_SELECTION );
         personSorter = new TableRowSorter<>( ( DefaultTableModel ) jTable1.getModel() );
 
@@ -217,12 +221,9 @@ public class MainWindow extends javax.swing.JFrame
         expeditionCost = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         expeditionDescriptionTextArea = new javax.swing.JTextArea();
-        expeditionCutOffDate = new com.toedter.calendar.JDateChooser();
-        expeditionDepartureDate = new com.toedter.calendar.JDateChooser();
-        expeditionArrivalDate = new com.toedter.calendar.JDateChooser();
+        expeditionIdLabel = new javax.swing.JLabel();
         expeditionCancelButton = new javax.swing.JButton();
         expeditionSaveButton = new javax.swing.JButton();
-        expeditionId = new javax.swing.JTextField();
         contentContainer = new javax.swing.JPanel();
         loginPanel = new javax.swing.JPanel();
         loginPanelForm = new javax.swing.JPanel();
@@ -241,19 +242,16 @@ public class MainWindow extends javax.swing.JFrame
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        ManageAccountsIcon = new javax.swing.JLabel();
         peoplePanel = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        fundraiserTab = new javax.swing.JPanel();
-        donorsTab = new javax.swing.JPanel();
-        userManagementPanel = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        adminTab = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
         expeditionPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -263,6 +261,14 @@ public class MainWindow extends javax.swing.JFrame
         jLabel9 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
+        AccountsPanel = new javax.swing.JPanel();
+        AccountsBackButton = new javax.swing.JLabel();
+        accountSearchButton = new javax.swing.JButton();
+        AccountsSearchBox = new javax.swing.JTextField();
+        AccountsSearchjLabel = new javax.swing.JLabel();
+        accountsCreateAccountButton = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        AccountsJTable = new javax.swing.JTable();
         ePovertyLogo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -495,11 +501,7 @@ public class MainWindow extends javax.swing.JFrame
         expeditionDescriptionTextArea.setRows(5);
         jScrollPane3.setViewportView(expeditionDescriptionTextArea);
 
-        expeditionCutOffDate.setDateFormatString("yyyy-MM-dd");
-
-        expeditionDepartureDate.setDateFormatString("yyyy-MM-dd");
-
-        expeditionArrivalDate.setDateFormatString("yyyy-MM-dd");
+        expeditionIdLabel.setText("jLabel18");
 
         expeditionCancelButton.setText("Cancel");
         expeditionCancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -525,27 +527,20 @@ public class MainWindow extends javax.swing.JFrame
                     .addComponent(jLabel10)
                     .addComponent(jLabel15)
                     .addComponent(jLabel14)
+                    .addComponent(jLabel16)
                     .addComponent(jLabel13)
-                    .addComponent(jLabel17)
                     .addGroup(viewExpeditionLayout.createSequentialGroup()
                         .addGroup(viewExpeditionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel16))
-                        .addGap(41, 41, 41)
+                            .addComponent(jLabel12))
+                        .addGap(45, 45, 45)
                         .addGroup(viewExpeditionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3)
-                            .addGroup(viewExpeditionLayout.createSequentialGroup()
-                                .addGroup(viewExpeditionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(expeditionCutOffDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(expeditionCost, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(expeditionDepartureDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(expeditionGoal, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(expeditionName, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(viewExpeditionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(expeditionId, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(expeditionArrivalDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGap(0, 65, Short.MAX_VALUE))))
+                            .addComponent(expeditionCost, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(expeditionGoal, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(expeditionName, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(expeditionIdLabel)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jLabel17)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewExpeditionLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(expeditionSaveButton)
@@ -571,28 +566,16 @@ public class MainWindow extends javax.swing.JFrame
                 .addGroup(viewExpeditionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(expeditionCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
-                .addGroup(viewExpeditionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(viewExpeditionLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel13)
-                        .addGap(19, 19, 19))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewExpeditionLayout.createSequentialGroup()
-                        .addComponent(expeditionCutOffDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
-                .addGroup(viewExpeditionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(viewExpeditionLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel15))
-                    .addComponent(expeditionDepartureDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addComponent(jLabel13)
+                .addGap(25, 25, 25)
+                .addComponent(jLabel15)
                 .addGap(22, 22, 22)
-                .addGroup(viewExpeditionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel14)
-                    .addComponent(expeditionArrivalDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel14)
                 .addGap(18, 18, 18)
                 .addGroup(viewExpeditionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(expeditionId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(expeditionIdLabel))
                 .addGap(18, 18, 18)
                 .addGroup(viewExpeditionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel17)
@@ -613,7 +596,7 @@ public class MainWindow extends javax.swing.JFrame
 
         loginPanelForm.setBorder(javax.swing.BorderFactory.createTitledBorder("Log In"));
         loginPanelForm.setToolTipText("");
-        loginPanelForm.setName("Login");
+        loginPanelForm.setName("Login"); // NOI18N
 
         emailLabelLogin.setText("Email:");
 
@@ -694,7 +677,7 @@ public class MainWindow extends javax.swing.JFrame
                 .addComponent(ePovertyLogoLogin)
                 .addGap(39, 39, 39)
                 .addComponent(loginPanelForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(193, Short.MAX_VALUE))
+                .addContainerGap(185, Short.MAX_VALUE))
         );
 
         loginPanelForm.getAccessibleContext().setAccessibleName("");
@@ -728,7 +711,7 @@ public class MainWindow extends javax.swing.JFrame
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(571, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -766,6 +749,22 @@ public class MainWindow extends javax.swing.JFrame
             }
         });
 
+        ManageAccountsIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ManageAccountsIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backendtest/money_64.png"))); // NOI18N
+        ManageAccountsIcon.setText("<html><br><b>Manage Accounts</b></html>");
+        ManageAccountsIcon.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        ManageAccountsIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ManageAccountsIcon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        ManageAccountsIcon.setMaximumSize(new java.awt.Dimension(117, 112));
+        ManageAccountsIcon.setMinimumSize(new java.awt.Dimension(117, 112));
+        ManageAccountsIcon.setPreferredSize(new java.awt.Dimension(117, 112));
+        ManageAccountsIcon.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        ManageAccountsIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ManageAccountsIconMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -773,18 +772,21 @@ public class MainWindow extends javax.swing.JFrame
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(22, 22, 22)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(548, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(ManageAccountsIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(401, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(ManageAccountsIcon, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout adminPanelLayout = new javax.swing.GroupLayout(adminPanel);
@@ -794,60 +796,22 @@ public class MainWindow extends javax.swing.JFrame
             .addGroup(adminPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(adminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         adminPanelLayout.setVerticalGroup(
             adminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(adminPanelLayout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addContainerGap(256, Short.MAX_VALUE))
         );
 
         jPanel3.add(adminPanel, "card2");
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backendtest/back.png"))); // NOI18N
-        jLabel6.setText("<html><b> Back  &nbsp;</b></html>");
-        jLabel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel6MouseClicked(evt);
-            }
-        });
-
-        jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.LEFT);
-
-        javax.swing.GroupLayout fundraiserTabLayout = new javax.swing.GroupLayout(fundraiserTab);
-        fundraiserTab.setLayout(fundraiserTabLayout);
-        fundraiserTabLayout.setHorizontalGroup(
-            fundraiserTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 787, Short.MAX_VALUE)
-        );
-        fundraiserTabLayout.setVerticalGroup(
-            fundraiserTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 427, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Fundraisers", fundraiserTab);
-
-        javax.swing.GroupLayout donorsTabLayout = new javax.swing.GroupLayout(donorsTab);
-        donorsTab.setLayout(donorsTabLayout);
-        donorsTabLayout.setHorizontalGroup(
-            donorsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 787, Short.MAX_VALUE)
-        );
-        donorsTabLayout.setVerticalGroup(
-            donorsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 427, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Donors", donorsTab);
-
-        userManagementPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Manage Users"));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Manage Users"));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -891,14 +855,14 @@ public class MainWindow extends javax.swing.JFrame
             }
         });
 
-        javax.swing.GroupLayout userManagementPanelLayout = new javax.swing.GroupLayout(userManagementPanel);
-        userManagementPanel.setLayout(userManagementPanelLayout);
-        userManagementPanelLayout.setHorizontalGroup(
-            userManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(userManagementPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(userManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(userManagementPanelLayout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -906,14 +870,14 @@ public class MainWindow extends javax.swing.JFrame
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 247, Short.MAX_VALUE)
                         .addComponent(jButton1))
-                    .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        userManagementPanelLayout.setVerticalGroup(
-            userManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(userManagementPanelLayout.createSequentialGroup()
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(userManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
@@ -923,20 +887,15 @@ public class MainWindow extends javax.swing.JFrame
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("User Management", userManagementPanel);
-
-        javax.swing.GroupLayout adminTabLayout = new javax.swing.GroupLayout(adminTab);
-        adminTab.setLayout(adminTabLayout);
-        adminTabLayout.setHorizontalGroup(
-            adminTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 787, Short.MAX_VALUE)
-        );
-        adminTabLayout.setVerticalGroup(
-            adminTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 427, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Admins", adminTab);
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backendtest/back.png"))); // NOI18N
+        jLabel6.setText("<html><b> Back  &nbsp;</b></html>");
+        jLabel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout peoplePanelLayout = new javax.swing.GroupLayout(peoplePanel);
         peoplePanel.setLayout(peoplePanelLayout);
@@ -945,20 +904,18 @@ public class MainWindow extends javax.swing.JFrame
             .addGroup(peoplePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(peoplePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(peoplePanelLayout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         peoplePanelLayout.setVerticalGroup(
             peoplePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, peoplePanelLayout.createSequentialGroup()
+            .addGroup(peoplePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         jPanel3.add(peoplePanel, "card3");
@@ -972,6 +929,16 @@ public class MainWindow extends javax.swing.JFrame
             }
         ));
         jScrollPane2.setViewportView(jTable2);
+        jTable2.getColumnModel().getColumn(0).setHeaderValue("ID");
+        jTable2.getColumnModel().getColumn(1).setResizable(false);
+        jTable2.getColumnModel().getColumn(1).setHeaderValue("Name");
+        jTable2.getColumnModel().getColumn(2).setHeaderValue("Cost");
+        jTable2.getColumnModel().getColumn(3).setResizable(false);
+        jTable2.getColumnModel().getColumn(3).setHeaderValue("Default Raise Goal");
+        jTable2.getColumnModel().getColumn(4).setResizable(false);
+        jTable2.getColumnModel().getColumn(4).setHeaderValue("Cut Off Date");
+        jTable2.getColumnModel().getColumn(5).setResizable(false);
+        jTable2.getColumnModel().getColumn(5).setHeaderValue("Departure Date");
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backendtest/back.png"))); // NOI18N
         jLabel8.setText("<html><b> Back  &nbsp;</b></html>");
@@ -1019,11 +986,10 @@ public class MainWindow extends javax.swing.JFrame
             .addGroup(expeditionPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(expeditionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
                     .addGroup(expeditionPanelLayout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(expeditionPanelLayout.createSequentialGroup()
+                        .addGap(0, 710, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, expeditionPanelLayout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1032,27 +998,128 @@ public class MainWindow extends javax.swing.JFrame
                         .addGap(89, 89, 89)
                         .addComponent(jButton4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
-                        .addComponent(jButton3)))
+                        .addComponent(jButton3))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 787, Short.MAX_VALUE))
                 .addContainerGap())
         );
         expeditionPanelLayout.setVerticalGroup(
             expeditionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, expeditionPanelLayout.createSequentialGroup()
+            .addGroup(expeditionPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
                 .addGroup(expeditionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4)
                     .addComponent(jButton5)
                     .addComponent(jButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         jPanel3.add(expeditionPanel, "card4");
+
+        AccountsBackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backendtest/back.png"))); // NOI18N
+        AccountsBackButton.setText("<html><b> Back  &nbsp;</b></html>");
+        AccountsBackButton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        AccountsBackButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        AccountsBackButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AccountsBackButtonMouseClicked(evt);
+            }
+        });
+
+        accountSearchButton.setText("Search");
+        accountSearchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accountSearchButtonActionPerformed(evt);
+            }
+        });
+
+        AccountsSearchBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AccountsSearchBoxjButton5ActionPerformed(evt);
+            }
+        });
+
+        AccountsSearchjLabel.setText("Search");
+
+        accountsCreateAccountButton.setText("Create Account");
+        accountsCreateAccountButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accountsCreateAccountButtonActionPerformed(evt);
+            }
+        });
+
+        AccountsJTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "AccountID", "AccountName", "Description", "Balance", "autoRedirectPercent"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(AccountsJTable);
+
+        javax.swing.GroupLayout AccountsPanelLayout = new javax.swing.GroupLayout(AccountsPanel);
+        AccountsPanel.setLayout(AccountsPanelLayout);
+        AccountsPanelLayout.setHorizontalGroup(
+            AccountsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AccountsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(AccountsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AccountsPanelLayout.createSequentialGroup()
+                        .addComponent(AccountsBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 710, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AccountsPanelLayout.createSequentialGroup()
+                        .addGap(0, 680, Short.MAX_VALUE)
+                        .addComponent(accountsCreateAccountButton)))
+                .addContainerGap())
+            .addGroup(AccountsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(AccountsPanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(AccountsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 787, Short.MAX_VALUE)
+                        .addGroup(AccountsPanelLayout.createSequentialGroup()
+                            .addComponent(AccountsSearchjLabel)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(AccountsSearchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(accountSearchButton)))
+                    .addContainerGap()))
+        );
+        AccountsPanelLayout.setVerticalGroup(
+            AccountsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AccountsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(AccountsBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(accountsCreateAccountButton)
+                .addContainerGap(496, Short.MAX_VALUE))
+            .addGroup(AccountsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(AccountsPanelLayout.createSequentialGroup()
+                    .addGap(73, 73, 73)
+                    .addGroup(AccountsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(AccountsSearchjLabel)
+                        .addComponent(AccountsSearchBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(accountSearchButton))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
+        jPanel3.add(AccountsPanel, "card5");
+        AccountsPanel.getAccessibleContext().setAccessibleDescription("");
 
         ePovertyLogo.setFont(new java.awt.Font("MS PGothic", 0, 36)); // NOI18N
         ePovertyLogo.setText("ePoverty");
@@ -1432,45 +1499,44 @@ public class MainWindow extends javax.swing.JFrame
 
             public void run()
             {
-                MainWindow win = new MainWindow();
-                win.setVisible( true );
-                win.setExtendedState(win.getExtendedState() | JFrame.MAXIMIZED_BOTH);
-                
+                new MainWindow().setVisible( true );
             }
 
         } );
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel AccountsBackButton;
+    private javax.swing.JTable AccountsJTable;
+    private javax.swing.JPanel AccountsPanel;
+    private javax.swing.JTextField AccountsSearchBox;
+    private javax.swing.JLabel AccountsSearchjLabel;
+    private javax.swing.JLabel ManageAccountsIcon;
+    private javax.swing.JButton accountSearchButton;
+    private javax.swing.JButton accountsCreateAccountButton;
     private javax.swing.JPanel addressPanel;
     private javax.swing.JPanel adminPanel;
-    private javax.swing.JPanel adminTab;
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton changePassButton;
     private javax.swing.JTextField cityField;
     private javax.swing.JLabel cityLabel;
     private javax.swing.JPanel contentContainer;
-    private javax.swing.JPanel donorsTab;
     private javax.swing.JLabel ePovertyLogo;
     private javax.swing.JLabel ePovertyLogoLogin;
     private javax.swing.JTextField emailField;
     private javax.swing.JTextField emailFieldLogin;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JLabel emailLabelLogin;
-    private com.toedter.calendar.JDateChooser expeditionArrivalDate;
     private javax.swing.JButton expeditionCancelButton;
     private javax.swing.JTextField expeditionCost;
-    private com.toedter.calendar.JDateChooser expeditionCutOffDate;
-    private com.toedter.calendar.JDateChooser expeditionDepartureDate;
     private javax.swing.JTextArea expeditionDescriptionTextArea;
     private javax.swing.JTextField expeditionGoal;
-    private javax.swing.JTextField expeditionId;
+    private javax.swing.JLabel expeditionIdLabel;
     private javax.swing.JTextField expeditionName;
     private javax.swing.JPanel expeditionPanel;
     private javax.swing.JButton expeditionSaveButton;
     private javax.swing.JTextField firstNameField;
     private javax.swing.JLabel firstNameLabel;
-    private javax.swing.JPanel fundraiserTab;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -1499,10 +1565,11 @@ public class MainWindow extends javax.swing.JFrame
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
@@ -1527,7 +1594,6 @@ public class MainWindow extends javax.swing.JFrame
     private javax.swing.JLabel stateLabel;
     private javax.swing.JTextField streetField;
     private javax.swing.JLabel streetLabel;
-    private javax.swing.JPanel userManagementPanel;
     private javax.swing.JDialog viewExpedition;
     private javax.swing.JDialog viewPerson;
     private javax.swing.JTextField zipField;

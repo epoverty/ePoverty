@@ -76,7 +76,9 @@ public class Expeditions
                 ps.setDate( 6, returnDate );
                 ps.setDate( 7, cutoffDate );
 
-                MySQLInterface.ExecutePreparedStatement(ps);
+                if ( !ps.execute() ) {
+                    System.out.println( "Error while adding new expeditions" );
+                }
             }
             catch ( SQLException ex ) {
                 ex.printStackTrace();
@@ -98,7 +100,9 @@ public class Expeditions
                 ps.setDate( 7, cutoffDate );
                 ps.setInt( 8, expeditionId );
 
-                MySQLInterface.ExecutePreparedStatement(ps);
+                if ( !ps.execute() ) {
+                    System.out.println( "Error while updating expeditions with id: " + expeditionId );
+                }
             }
             catch ( SQLException ex ) {
                 System.out.println( "Error while updating or inserting new expeditions: " + ex.getMessage() );
@@ -126,7 +130,7 @@ public class Expeditions
         try {
             String query = "select * from expeditions;";
             ResultSet rs;
-            rs = MySQLInterface.ExecuteQuery( query );
+            rs = MySQLInterface.dbConn.createStatement().executeQuery( query );
 
             while ( rs.next() ) {
                 Expeditions temp = new Expeditions();

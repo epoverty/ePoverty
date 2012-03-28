@@ -14,8 +14,7 @@ import javax.imageio.ImageIO;
  *
  * @author Brent Nielson
  */
-public class Person
-{
+public class Person {
 
     public int personID = 0;
     public String firstName = "";
@@ -29,22 +28,14 @@ public class Person
     public String addressZip = "";
     public String password = "";
     public BufferedImage photo = null;
-    //related vars
-    public int donorId = 0;
-    public int fundraiserId = 0;
-    public int adminId = 0;
     private PreparedStatement ps; // To make the inserts and updates easier
 
     //Loads person data from the database using the personId number
-    public void LoadPerson(int pID)
-    {
-        String query = " SELECT P.*,COALESCE(A.adminId,0) adminId,COALESCE(F.fundraiserId,0) fundraiserId"
-                + ",COALESCE(D.donorId,0) donorId FROM `persons` P left join admins A using (personId)"
-                + " left join fundraisers F using (personId) left join donors D using (personId) WHERE personId=" + pID;
+    public void LoadPerson(int pID) {
+        String query = "SELECT * FROM persons WHERE personId=" + pID;
         ResultSet rs = MySQLInterface.ExecuteQuery(query);
 
-        try
-        {
+        try {
             rs.next();
             personID = rs.getInt("personId");
             firstName = rs.getString("firstName");
@@ -64,48 +55,34 @@ public class Person
                 ByteArrayInputStream bis = new ByteArrayInputStream(photoBytes);//create a ByteArrayInputStream from our array of bytes
                 photo = ImageIO.read(bis);//use Java's native ImageIO class, and static read method to read from our bytes, and create a BufferedImage
 
-            }
-            else
-            {
+            } else {
                 photo = null;
             }
-
-            //related vars
-            adminId = rs.getInt("adminId");
-            donorId = rs.getInt("donorId");
-            fundraiserId = rs.getInt("fundraiserId");
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
 
     }
 
-    public void LoadPersonWhere(String[] fields, String[] values) throws Exception
-    {
+    
+    public void LoadPersonWhere(String[] fields, String[] values) throws Exception {
 
         //create query
         String query = "Select * FROM persons WHERE ";
-        if (fields.length != values.length)
+         if (fields.length != values.length)
+             throw new Exception("fields doesn't match values");
+         
+        for (int x=0; x<fields.length; x++)
         {
-            throw new Exception("fields doesn't match values");
-        }
-
-        for (int x = 0; x < fields.length; x++)
-        {
-
-            query += fields[x] + "='" + values[x] + "'";
-
-            if (x + 1 != fields.length)
-            {
-                query += " AND ";
-            }
-
+            
+                query += fields[x] + "='" + values[x] + "'";
+                
+                if (x+1 != fields.length)
+                    query += " AND ";
+            
         }
         System.out.println(query);
-        try
-        {
+        try {
             ResultSet rs = MySQLInterface.ExecuteQuery(query);
 
             rs.next();
@@ -127,48 +104,38 @@ public class Person
                 ByteArrayInputStream bis = new ByteArrayInputStream(photoBytes);//create a ByteArrayInputStream from our array of bytes
                 photo = ImageIO.read(bis);//use Java's native ImageIO class, and static read method to read from our bytes, and create a BufferedImage
 
-            }
-            else
-            {
+            } else {
                 photo = null;
             }
-        }
-        catch (SQLException ex)
-        {
-            System.out.println("blah " + ex.getMessage());
+        } catch (SQLException ex) {
+            System.out.println("blah "+ex.getMessage());
         }
 
     }
 
-    public String ToString()
-    {
+    public String ToString() {
         return firstName + " " + middleName + " " + lastName;
     }
 
-    public void SavePerson()
-    {
+    public void SavePerson() {
         String query;
         byte[] photoBytes = null; // Used to upload the photo as bytes
 
         if (photo != null) // There is a photo to update
         {
-            try
-            {
+            try {
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 ImageIO.write(photo, "jpg", baos); // write the photo to the ByteArrayOutputStream
                 baos.flush();
                 photoBytes = baos.toByteArray(); // Convert it to a byteArray
-            }
-            catch (IOException ex)
-            {
+            } catch (IOException ex) {
                 System.out.println("Error converting photo to a byte array: " + ex.getMessage());
             }
         }
 
         if (personID == 0) //new person 
         {
-            try
-            {
+            try {
                 String sql = "insert into persons (firstName,middleName,lastName,phoneNumber,emailAddress,addressStreet,addressCity,addressState,addressZip,password,photo)"
                         + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 ps = MySQLInterface.dbConn.prepareStatement(sql);//prepared statements use variable places defined by ?s, indexed starting at 1
@@ -185,18 +152,14 @@ public class Person
                 ps.setString(10, password);
                 ps.setBytes(11, photoBytes);
 
-                MySQLInterface.ExecutePreparedStatement(ps);
-            }
-            catch (SQLException ex)
-            {
+                ps.execute();
+            } catch (SQLException ex) {
                 ex.printStackTrace();
             }
 
-        }
-        else //update a person
+        } else //update a person
         {
-            try
-            {
+            try {
                 String sql = "UPDATE persons SET firstName= ? , middleName= ? , lastName= ? , phoneNumber= ? , emailAddress= ? ,"
                         + "addressStreet= ? , addressCity= ? , addressState= ? , addressZip= ? , password= ? , photo= ? "
                         + "WHERE personId= ? ";
@@ -215,43 +178,34 @@ public class Person
                 ps.setBytes(11, photoBytes);
                 ps.setInt(12, personID);
 
-                MySQLInterface.ExecutePreparedStatement(ps);
-            }
-            catch (SQLException ex)
-            {
+                ps.execute();
+            } catch (SQLException ex) {
                 System.out.println("Error while updating or inserting new person: " + ex.getMessage());
                 ex.printStackTrace();
             }
 
         }
 
-        if (personID == 0)
-        {
+        if (personID == 0) {
             ResultSet rs = MySQLInterface.ExecuteQuery("SELECT LAST_INSERT_ID() LID;");
-            try
-            {
+            try {
                 rs.next();
                 personID = rs.getInt("LID");
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
             }
         }
     }
 
     //Static method useful for retrieving all the people in the Persons table and creating a Person object for each
     // It then returns an array of Person objects
-    public static Person[] getPersons()
-    {
+    public static Person[] getPersons() {
         ArrayList<Person> persons = new ArrayList<>();
-        try
-        {
+        try {
             String query = "select personId,firstName,middleName,lastName,phoneNumber,emailAddress,addressStreet,addressCity,addressState,addressZip,password,photo from persons;";
             ResultSet rs;
-            rs = MySQLInterface.ExecuteQuery(query);
+            rs = MySQLInterface.dbConn.createStatement().executeQuery(query);
             String name;
-            while (rs.next())
-            {
+            while (rs.next()) {
                 Person tempPerson = new Person();
                 tempPerson.personID = rs.getInt("personId");
                 tempPerson.firstName = rs.getString("firstName");
@@ -269,18 +223,13 @@ public class Person
                 if (photoBytes != null)//check to see if there is a photo on file for this person
                 {
                     ByteArrayInputStream bis = new ByteArrayInputStream(photoBytes);//create a ByteArrayInputStream from our array of bytes
-                    try
-                    {
+                    try {
                         tempPerson.photo = ImageIO.read(bis);//use Java's native ImageIO class, and static read method to read from our bytes, and create a BufferedImage
-                    }
-                    catch (IOException ex)
-                    {
+                    } catch (IOException ex) {
                         System.out.println("Could not read the photo from the database: " + ex.getMessage());
                     }
 
-                }
-                else
-                {
+                } else {
                     tempPerson.photo = null;
                 }
 
@@ -290,9 +239,7 @@ public class Person
             }
 
 
-        }
-        catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             System.out.println("Error while retrieve all the people from the Persons table: " + ex.getMessage());
         }
 
@@ -300,132 +247,9 @@ public class Person
         Person[] objects = persons.toArray(new Person[persons.size()]); //convert the arraylist to an array of Person objects
         return objects;
     }
-
+    
     public Object[] jTree()
     {
-        return new Object[]
-                {
-                    firstName, middleName, lastName, emailAddress
-                };
-    }
-
-    public boolean isAdmin()
-    {
-        return (adminId != 0);
-    }
-
-    public boolean isDonor()
-    {
-        return (donorId != 0);
-    }
-
-    public boolean isFundraiser()
-    {
-        return (fundraiserId != 0);
-    }
-
-    public void SetAsAdmin()
-    {
-        if (personID == 0)
-            return;
-        try
-        {
-            String query = "INSERT IGNORE INTO admins (personId) VALUES (?);";
-            ps = MySQLInterface.dbConn.prepareStatement(query);
-            ps.setInt(1,personID);
-            MySQLInterface.ExecutePreparedStatement(ps);
-        }
-        catch (SQLException ex)
-        {
-            System.out.println("Error while setting person as admin: " + ex.getMessage());
-            ex.printStackTrace();
-        }
-
-    }
-    
-    public void RemoveAsAdmin()
-    {
-        try
-        {
-            String query = "DELETE FROM admins WHERE personId=?;";
-            ps = MySQLInterface.dbConn.prepareStatement(query);
-            ps.setInt(1,personID);
-            MySQLInterface.ExecutePreparedStatement(ps);
-        }
-        catch (SQLException ex)
-        {
-            System.out.println("Error while removing person as admin: " + ex.getMessage());
-            ex.printStackTrace();
-        }
-    }
-    
-    public void SetAsDonor()
-    {
-        if (personID == 0)
-            return;
-        try
-        {
-            String query = "INSERT IGNORE INTO donors (personId) VALUES (?);";
-            ps = MySQLInterface.dbConn.prepareStatement(query);
-            ps.setInt(1,personID);
-            MySQLInterface.ExecutePreparedStatement(ps);
-        }
-        catch (SQLException ex)
-        {
-            System.out.println("Error while setting person as donor: " + ex.getMessage());
-            ex.printStackTrace();
-        }
-
-    }
-    
-    public void RemoveAsDonor()
-    {
-        try
-        {
-            String query = "DELETE FROM donors WHERE personId=?;";
-            ps = MySQLInterface.dbConn.prepareStatement(query);
-            ps.setInt(1,personID);
-            MySQLInterface.ExecutePreparedStatement(ps);
-        }
-        catch (SQLException ex)
-        {
-            System.out.println("Error while removing person as donor: " + ex.getMessage());
-            ex.printStackTrace();
-        }
-    }
-    
-    public void SetAsFundraiser()
-    {
-        if (personID == 0)
-            return;
-        try
-        {
-            String query = "INSERT IGNORE INTO fundraisers (personId) VALUES (?);";
-            ps = MySQLInterface.dbConn.prepareStatement(query);
-            ps.setInt(1,personID);
-            MySQLInterface.ExecutePreparedStatement(ps);
-        }
-        catch (SQLException ex)
-        {
-            System.out.println("Error while setting person as fundraiser: " + ex.getMessage());
-            ex.printStackTrace();
-        }
-
-    }
-    
-    public void RemoveAsFundraiser()
-    {
-        try
-        {
-            String query = "DELETE FROM fundraisers WHERE personId=?;";
-            ps = MySQLInterface.dbConn.prepareStatement(query);
-            ps.setInt(1,personID);
-            MySQLInterface.ExecutePreparedStatement(ps);
-        }
-        catch (SQLException ex)
-        {
-            System.out.println("Error while removing person as fundraiser: " + ex.getMessage());
-            ex.printStackTrace();
-        }
+        return new Object[]{firstName,middleName,lastName,emailAddress};
     }
 }

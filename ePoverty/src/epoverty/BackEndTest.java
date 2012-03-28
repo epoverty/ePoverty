@@ -29,7 +29,6 @@ public class BackEndTest
         Person p = new Person();
         p.LoadPerson(1);
         System.out.println("Pulled user: "+p.ToString()+" from database");
-        System.out.println( p.adminId + " " + p.donorId );
                 
         /*
         p = new Person();

@@ -24,7 +24,7 @@ public class Withdrawals
     public String payee = "";
     public String description = "";
     //Classes for foreign keys
-    Accounts account = new Accounts();
+    //Accounts account = new Accounts();
     private PreparedStatement ps; // To make the inserts and updates easier
 
     //Loads person data from the database using the personId number
@@ -42,7 +42,7 @@ public class Withdrawals
             payee = rs.getString("payee");
             description = rs.getString("description");
             
-            account.LoadAccount(accountId);
+            //account.loadAccounts(accountId);
 
         }
         catch (Exception ex)
@@ -54,8 +54,8 @@ public class Withdrawals
 
     public String ToString()
     {
-        //return "";
-        return account.ToString();
+        return "";
+        //return account.ToString();
     }
 
     public void SaveWithdrawals()
@@ -74,7 +74,7 @@ public class Withdrawals
                 ps.setString(3,payee);
                 ps.setString(4, description);
 
-                if (!MySQLInterface.ExecutePreparedStatement(ps))
+                if (!ps.execute())
                 {
                     System.out.println("Error while adding new withdrawals");
                 }
@@ -99,7 +99,7 @@ public class Withdrawals
                 ps.setString(4, description);
                 ps.setInt(5, withdrawalId);
 
-                if (!MySQLInterface.ExecutePreparedStatement(ps))
+                if (!ps.execute())
                 {
                     System.out.println("Error while updating withdrawals with id: " + withdrawalId);
                 }
@@ -135,14 +135,14 @@ public class Withdrawals
         {
             String query = "select withdrawalId,accountId from withdrawals;";
             ResultSet rs;
-            rs = MySQLInterface.ExecuteQuery(query);
+            rs = MySQLInterface.dbConn.createStatement().executeQuery(query);
 
             while (rs.next())
             {
                 Withdrawals temp = new Withdrawals();
                 temp.withdrawalId = rs.getInt("withdrawalId");
                 temp.accountId = rs.getInt("accountId");
-                temp.account.LoadAccount(temp.accountId);
+                //temp.account.LoadAccounts(temp.accountId);
 
                 //add the object into the ArrayList for later use
                 withdrawals.add(temp);

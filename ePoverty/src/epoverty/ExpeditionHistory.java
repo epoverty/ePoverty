@@ -62,7 +62,13 @@ public class ExpeditionHistory
                         + " values ()";
                 ps = MySQLInterface.dbConn.prepareStatement(sql);//prepared statements use variable places defined by ?s, indexed starting at 1
 
-                MySQLInterface.ExecutePreparedStatement(ps);                
+                //ps vars
+                //ps.set? = ?
+
+                if (!ps.execute())
+                {
+                    System.out.println("Error while adding new expeditionHistory");
+                }
             }
             catch (SQLException ex)
             {
@@ -80,7 +86,10 @@ public class ExpeditionHistory
                 
                 ps.setInt(1, expedtionId);
 
-                MySQLInterface.ExecutePreparedStatement(ps);
+                if (!ps.execute())
+                {
+                    System.out.println("Error while updating expeditionHistory with id: " + expedtionId);
+                }
             }
             catch (SQLException ex)
             {
@@ -113,7 +122,7 @@ public class ExpeditionHistory
         {
             String query = "select expedtionId from expeditionHistory;";
             ResultSet rs;
-            rs = MySQLInterface.ExecuteQuery(query);
+            rs = MySQLInterface.dbConn.createStatement().executeQuery(query);
             
             while (rs.next())
             {

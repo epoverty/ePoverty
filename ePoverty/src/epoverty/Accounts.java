@@ -103,8 +103,7 @@ public class Accounts {
                 ps.setDouble(4, balance);
                 ps.setDouble(5, autoRedirectPercent);
                 //Execute the prepaired statement
-                //ps.execute();
-                MySQLInterface.ExecutePreparedStatement(ps);
+                ps.execute();
                 //Output the Stack if error is found
             } catch (SQLException ex) {
                 System.out.println("Error during insert of account ID, Stack follows: " + ex.getMessage() + ex.getSQLState());
@@ -126,8 +125,7 @@ public class Accounts {
                 //5th parm is the where clause, I used account id
                 ps.setInt   (5, accountID);
                 //Execute the Prepared statement
-                //ps.execute();
-                MySQLInterface.ExecutePreparedStatement(ps);
+                ps.execute();
             } catch (SQLException ex) {
                 //Catch Error, and out put the error and sql state
                 System.out.println("Error while updating account table: " + ex.getMessage() + ex.getSQLState());
@@ -156,7 +154,7 @@ public class Accounts {
             //create object to hold the results from the above query
             ResultSet rs;
             //Connect to DB and populate rs object
-            rs = MySQLInterface.ExecuteQuery(query);
+            rs = MySQLInterface.dbConn.createStatement().executeQuery(query);
             //Create iterator for rs items
             while (rs.next()) {
                 //Create temp account object

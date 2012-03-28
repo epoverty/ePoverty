@@ -2,21 +2,20 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package epoverty;
+package backendtest;
 
 /**
  *
- * @author trevor
+ * @author duffy
  */
-public class EPoverty
+public class BackEndTest
 {
 
     /**
      * @param args the command line arguments
      */
-    public static void main( String[] args )
+    public static void main(String[] args)
     {
-        // TODO code application logic here
+        
     }
-    
 }
