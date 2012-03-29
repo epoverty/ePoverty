@@ -119,7 +119,7 @@ public class Admins
         ArrayList<Admins> admins = new ArrayList<>();
         try
         {
-            String query = "select adminId from admins;";
+            String query = "select adminId,personId from admins;";
             ResultSet rs;
             rs = MySQLInterface.dbConn.createStatement().executeQuery(query);
             
