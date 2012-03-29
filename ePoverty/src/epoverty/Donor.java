@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class Donor
 {
     //table columns go here
+
     public int donorId = 0;
     public int personId = 0;
     public Person person = new Person();
@@ -39,6 +40,25 @@ public class Donor
             System.out.println(ex.getMessage());
         }
 
+    }
+
+    //Gives the total amount donated in the past N months
+    public float GetDonationsLastNMonth(int months)
+    {
+        String query = "SELECT SUM(donationAmount) amt FROM donations WHERE donorID=" + donorId + " AND donationDate >= (CURDATE() - INTERVAL " + months + " MONTH)";
+        ResultSet rs = MySQLInterface.ExecuteQuery(query);
+
+        float amt = 0;
+        try
+        {
+            rs.next();
+            amt = rs.getFloat("amt");
+        }
+        catch (Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+        return amt;
     }
 
     public String ToString()
@@ -115,7 +135,7 @@ public class Donor
         ArrayList<Donor> donors = new ArrayList<>();
         try
         {
-            String query = "select * from donors;";
+            String query = "select donorId,personId from donors;";
             ResultSet rs;
             rs = MySQLInterface.dbConn.createStatement().executeQuery(query);
 
