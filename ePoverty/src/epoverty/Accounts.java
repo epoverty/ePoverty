@@ -1,14 +1,9 @@
 package epoverty;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.imageio.ImageIO;
 
 /**
  *
@@ -88,6 +83,8 @@ public class Accounts {
     public String ToString() {
         return accountName + " " + description + " " + balance;
     }
+    
+    
     //save account method
     public void SaveAccount() {
         String query;
@@ -118,7 +115,7 @@ public class Accounts {
         {
             try {
                 String sql = "UPDATE accounts SET accountName= ? , description= ? , balance= ? , autoRedirectPercent= ? "
-                        + "WHERE personId= ? ";
+                        + "WHERE accountID= ? ";
                 ps = MySQLInterface.dbConn.prepareStatement(sql);//prepared statements use variable places defined by ?s, indexed starting at 1
                 //Populate the Prepared Statement
                 ps.setString(1, accountName);
@@ -182,7 +179,7 @@ public class Accounts {
         }
 
         //return our ArrayList of accounts as an array
-        Accounts[] objects = accounts.toArray(new Accounts[accounts.size()]); //convert the arraylist to an array of Person objects
+        Accounts[] objects = accounts.toArray(new Accounts[accounts.size()]); //convert the arraylist to an array of Accounts objects
         return objects;
     }
     //Create jTree object to stay consistant with other objects in project
