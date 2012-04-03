@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Mike Larsen
+ * @author Mike Larse
  */
 public class Accounts {
     
