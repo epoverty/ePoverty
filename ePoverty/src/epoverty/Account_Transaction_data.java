@@ -21,7 +21,7 @@ public class Account_Transaction_data {
     String donationDate;
     private PreparedStatement ps;
     
-    public Account_Transaction_data[] getTransactions(Double selectedAccount)
+    public static Account_Transaction_data[] getTransactions (int selectedAccount)
     {
         ArrayList<Account_Transaction_data> transactions = new ArrayList<>();
         ResultSet rs2;
@@ -31,22 +31,38 @@ public class Account_Transaction_data {
                         + "from accounts ac, deposits dp, donations dn, fundraisers fi, persons p, donors d, persons p2 "
                         + "where ac.accountID = dp.accountID and dp.donationID = dn.donationID and dn.fundraiserID = fi.fundraiserID "
                         + "and fi.personID = p.personID and d.donorId = dn.donorId and d.personId = p2.personId "
-                        + " and ac.accountID = ? order by donationdate desc ";
-                ps = MySQLInterface.dbConn.prepareStatement(sql);//prepared statements use variable places defined by ?s, indexed starting at 1
+                        + " and ac.accountID = " + selectedAccount + " order by donationdate desc ";
+                 //String query = "select accountID, accountName, description, balance, autoRedirectPercent from accounts;";
+                //create object to hold the results from the above query
+                //ResultSet rs;
+                //Connect to DB and populate rs object
+                //rs = MySQLInterface.ExecuteQuery(sql);
                 
-                ps.setDouble(1, selectedAccount);
+                
+                //ps = MySQLInterface.dbConn.prepareStatement(sql);//prepared statements use variable places defined by ?s, indexed starting at 1
+                
+                //ps.setDouble(1, selectedAccount);
                 //Execute the prepaired statement
                 //ps.execute();
                 rs2 =  MySQLInterface.ExecuteQuery(sql);
                         //MySQLInterface.ExecutePreparedStatement(ps);
                 //Output the Stack if error is found
-                rs2.next();
-                //Account_Transaction_data td = new Account_Transaction_data();
-                firstName = rs2.getString("firstName");
-                lastName = rs2.getString("lastName");
-                donationAmount = rs2.getDouble("donationAmount");
-                donor = rs2.getString("Donor");
-                donationDate = rs2.getString("donationDate");
+                while (rs2.next())
+                {
+                    //rs2.next();
+                    Account_Transaction_data temp = new Account_Transaction_data();
+                    //Account_Transaction_data td = new Account_Transaction_data();
+
+                    temp.firstName = rs2.getString("firstName");
+                    temp.lastName = rs2.getString("lastName");
+                    temp.donationAmount = rs2.getDouble("donationAmount");
+                    temp.donor = rs2.getString("Donor");
+                    temp.donationDate = rs2.getString("donationDate");
+
+                    //Account_Transaction_data dt = new Account_Transaction_data();
+                    transactions.add(temp);
+                }
+                
             } catch (SQLException ex) {
                 System.out.println("Error during Pull of account and transaction data, Stack follows: " + ex.getMessage() + ex.getSQLState());
                 ex.printStackTrace();
@@ -54,6 +70,11 @@ public class Account_Transaction_data {
         Account_Transaction_data[] objects = transactions.toArray(new Account_Transaction_data[transactions.size()]); //convert the arraylist to an array of Transactions objects
         return objects;
         
+    }
+    
+    public Object[] jTree()
+    {
+        return new Object[]{firstName, lastName, donationAmount, donor, donationDate};
     }
 
     public Double getDonationAmount() {
