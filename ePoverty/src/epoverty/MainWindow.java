@@ -40,8 +40,8 @@ public class MainWindow extends javax.swing.JFrame
         initComponents();
 
         this.setSize( 800, 600 );
-        jTable1.setSelectionMode( ListSelectionModel.SINGLE_SELECTION );
-        personSorter = new TableRowSorter<>( ( DefaultTableModel ) jTable1.getModel() );
+        userTable.setSelectionMode( ListSelectionModel.SINGLE_SELECTION );
+        personSorter = new TableRowSorter<>( ( DefaultTableModel ) userTable.getModel() );
 
         jTable2.setSelectionMode( ListSelectionModel.SINGLE_SELECTION );
         expeditionSorter = new TableRowSorter<>( ( DefaultTableModel ) jTable2.getModel() );
@@ -49,7 +49,7 @@ public class MainWindow extends javax.swing.JFrame
         AccountsJTable.setSelectionMode( ListSelectionModel.SINGLE_SELECTION );
         accountSorter = new TableRowSorter<>( ( DefaultTableModel ) AccountsJTable.getModel() );
         
-        jTextField1.getDocument().addDocumentListener( new DocumentListener()
+        srchUserTxtBox.getDocument().addDocumentListener( new DocumentListener()
         {
 
             public void changedUpdate( DocumentEvent e )
@@ -109,7 +109,7 @@ public class MainWindow extends javax.swing.JFrame
             
         } );
         
-        jTable1.setRowSorter(personSorter);
+        userTable.setRowSorter(personSorter);
         jTable2.setRowSorter(expeditionSorter);
         AccountsJTable.setRowSorter(accountSorter);
 
@@ -122,7 +122,7 @@ public class MainWindow extends javax.swing.JFrame
         RowFilter< DefaultTableModel, Object> rf = null;
         //declare a row filter for your table model  
         try {
-            rf = RowFilter.regexFilter( "(?i)" + jTextField1.getText());
+            rf = RowFilter.regexFilter( "(?i)" + srchUserTxtBox.getText());
             //initialize with a regular expression  
         }
         catch ( java.util.regex.PatternSyntaxException e ) {
@@ -252,11 +252,11 @@ public class MainWindow extends javax.swing.JFrame
         adminTab = new javax.swing.JPanel();
         manageUsersTab = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        userTable = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        srchUserTxtBox = new javax.swing.JTextField();
+        editUserBtn = new javax.swing.JButton();
+        srchUserBtn = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
         expeditionPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -901,7 +901,7 @@ public class MainWindow extends javax.swing.JFrame
 
         manageUsersTab.setBorder(javax.swing.BorderFactory.createTitledBorder("Manage Users"));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        userTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -917,29 +917,29 @@ public class MainWindow extends javax.swing.JFrame
                 return types [columnIndex];
             }
         });
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getColumn(3).setPreferredWidth(150);
+        userTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(userTable);
+        userTable.getColumnModel().getColumn(3).setPreferredWidth(150);
 
         jLabel5.setText("Search:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        srchUserTxtBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                srchUserTxtBoxActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Manage User");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        editUserBtn.setText("Manage User");
+        editUserBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                editUserBtnActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Search");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        srchUserBtn.setText("Search");
+        srchUserBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                srchUserTxtBoxActionPerformed(evt);
             }
         });
 
@@ -953,11 +953,11 @@ public class MainWindow extends javax.swing.JFrame
                     .addGroup(manageUsersTabLayout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(srchUserTxtBox, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
+                        .addComponent(srchUserBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 549, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                        .addComponent(editUserBtn))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -967,9 +967,9 @@ public class MainWindow extends javax.swing.JFrame
                 .addContainerGap()
                 .addGroup(manageUsersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(srchUserTxtBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editUserBtn)
+                    .addComponent(srchUserBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
                 .addContainerGap())
@@ -1334,7 +1334,7 @@ public class MainWindow extends javax.swing.JFrame
     private void jLabel1MouseClicked( java.awt.event.MouseEvent evt )//GEN-FIRST:event_jLabel1MouseClicked
     {//GEN-HEADEREND:event_jLabel1MouseClicked
         CardLayout cl = ( CardLayout ) jPanel3.getLayout();
-        DefaultTableModel model = ( DefaultTableModel ) jTable1.getModel();
+        DefaultTableModel model = ( DefaultTableModel ) userTable.getModel();
         model.getDataVector().removeAllElements();
         System.out.println( "Removed persons from list" );
         Person[] persons = Person.getPersons();
@@ -1346,12 +1346,12 @@ public class MainWindow extends javax.swing.JFrame
         cl.show( jPanel3, "card3" );
     }//GEN-LAST:event_jLabel1MouseClicked
 
-    private void jTextField1ActionPerformed( java.awt.event.ActionEvent evt )//GEN-FIRST:event_jTextField1ActionPerformed
-    {//GEN-HEADEREND:event_jTextField1ActionPerformed
+    private void srchUserTxtBoxActionPerformed( java.awt.event.ActionEvent evt )//GEN-FIRST:event_srchUserTxtBoxActionPerformed
+    {//GEN-HEADEREND:event_srchUserTxtBoxActionPerformed
         RowFilter< DefaultTableModel, Object> rf = null;
         //declare a row filter for your table model  
         try {
-            rf = RowFilter.regexFilter( "(?i)" + jTextField1.getText());
+            rf = RowFilter.regexFilter( "(?i)" + srchUserTxtBox.getText());
             //initialize with a regular expression  
         }
         catch ( java.util.regex.PatternSyntaxException e ) {
@@ -1359,11 +1359,11 @@ public class MainWindow extends javax.swing.JFrame
         }
 
         personSorter.setRowFilter( rf );
-    }//GEN-LAST:event_jTextField1ActionPerformed
-    private void jButton1ActionPerformed( java.awt.event.ActionEvent evt )//GEN-FIRST:event_jButton1ActionPerformed
-    {//GEN-HEADEREND:event_jButton1ActionPerformed
-        int selected = jTable1.getSelectedRow();
-        String email = (String) jTable1.getValueAt( selected, 3);
+    }//GEN-LAST:event_srchUserTxtBoxActionPerformed
+    private void editUserBtnActionPerformed( java.awt.event.ActionEvent evt )//GEN-FIRST:event_editUserBtnActionPerformed
+    {//GEN-HEADEREND:event_editUserBtnActionPerformed
+        int selected = userTable.getSelectedRow();
+        String email = (String) userTable.getValueAt( selected, 3);
         if ( selected != -1 ) {
             Person person = new Person();
             try {
@@ -1397,7 +1397,7 @@ public class MainWindow extends javax.swing.JFrame
         }
 
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_editUserBtnActionPerformed
 
     private void jLabel6MouseClicked( java.awt.event.MouseEvent evt )//GEN-FIRST:event_jLabel6MouseClicked
     {//GEN-HEADEREND:event_jLabel6MouseClicked
@@ -1543,7 +1543,7 @@ public class MainWindow extends javax.swing.JFrame
         RowFilter< DefaultTableModel, Object> rf = null;
         //declare a row filter for your table model  
         try {
-            rf = RowFilter.regexFilter( "(?i)" + jTextField1.getText());
+            rf = RowFilter.regexFilter( "(?i)" + srchUserTxtBox.getText());
             //initialize with a regular expression  
         }
         catch ( java.util.regex.PatternSyntaxException e ) {
@@ -1755,6 +1755,7 @@ public class MainWindow extends javax.swing.JFrame
     private javax.swing.JPanel donorsTab;
     private javax.swing.JLabel ePovertyLogo;
     private javax.swing.JLabel ePovertyLogoLogin;
+    private javax.swing.JButton editUserBtn;
     private javax.swing.JTextField emailField;
     private javax.swing.JTextField emailFieldLogin;
     private javax.swing.JLabel emailLabel;
@@ -1773,8 +1774,6 @@ public class MainWindow extends javax.swing.JFrame
     private javax.swing.JTextField firstNameField;
     private javax.swing.JLabel firstNameLabel;
     private javax.swing.JPanel fundraiserTab;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1809,9 +1808,7 @@ public class MainWindow extends javax.swing.JFrame
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField lastNameField;
     private javax.swing.JLabel lastNameLabel;
@@ -1832,10 +1829,13 @@ public class MainWindow extends javax.swing.JFrame
     private javax.swing.JLabel phoneLabel;
     private javax.swing.JLabel photoLabel;
     private javax.swing.JButton saveButton;
+    private javax.swing.JButton srchUserBtn;
+    private javax.swing.JTextField srchUserTxtBox;
     private javax.swing.JTextField stateField;
     private javax.swing.JLabel stateLabel;
     private javax.swing.JTextField streetField;
     private javax.swing.JLabel streetLabel;
+    private javax.swing.JTable userTable;
     private javax.swing.JDialog viewExpedition;
     private javax.swing.JDialog viewPerson;
     private javax.swing.JTextField zipField;
