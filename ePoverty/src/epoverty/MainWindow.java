@@ -222,6 +222,21 @@ public class MainWindow extends javax.swing.JFrame
         expeditionCutOffDate = new com.toedter.calendar.JDateChooser();
         expeditionDepartureDate = new com.toedter.calendar.JDateChooser();
         expeditionArrivalDate = new com.toedter.calendar.JDateChooser();
+        viewAccount = new javax.swing.JDialog();
+        AddAccountAccountID = new javax.swing.JLabel();
+        middleNameLabel1 = new javax.swing.JLabel();
+        AddAccountDescriptionLabel = new javax.swing.JLabel();
+        AddAccountBalanceLabel = new javax.swing.JLabel();
+        AddAccountRedirectLabel = new javax.swing.JLabel();
+        AddAccountAccountIDTextBox = new javax.swing.JTextField();
+        AddAccountAccountName = new javax.swing.JTextField();
+        AddAccountDescriptionTextBox = new javax.swing.JTextField();
+        AddAccountBalanceTextBox = new javax.swing.JTextField();
+        AddAccountRedirectTextBox = new javax.swing.JTextField();
+        AddAccountSaveButton = new javax.swing.JButton();
+        AddAccountCancelButton = new javax.swing.JButton();
+        ManageAccountsIcon1 = new javax.swing.JLabel();
+        AddAccountBackButton = new javax.swing.JLabel();
         contentContainer = new javax.swing.JPanel();
         loginPanel = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -607,6 +622,133 @@ public class MainWindow extends javax.swing.JFrame
                     .addComponent(expeditionCancelButton)
                     .addComponent(expeditionSaveButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        viewAccount.setAlwaysOnTop(true);
+        viewAccount.setBounds(new java.awt.Rectangle(0, 0, 450, 450));
+        viewAccount.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                viewAccountWindowClosed(evt);
+            }
+        });
+
+        AddAccountAccountID.setText("AccountID:");
+
+        middleNameLabel1.setText("AccountName:");
+
+        AddAccountDescriptionLabel.setText("Description:");
+
+        AddAccountBalanceLabel.setText("Balance:");
+
+        AddAccountRedirectLabel.setText("Redirect %:");
+
+        AddAccountSaveButton.setText("Save");
+        AddAccountSaveButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AddAccountSaveButtonMouseClicked(evt);
+            }
+        });
+        AddAccountSaveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddAccountSaveButtonActionPerformed(evt);
+            }
+        });
+
+        AddAccountCancelButton.setText("Cancel");
+        AddAccountCancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddAccountCancelButtonActionPerformed(evt);
+            }
+        });
+
+        ManageAccountsIcon1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ManageAccountsIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/epoverty/money_64.png"))); // NOI18N
+        ManageAccountsIcon1.setText("<html><br><b>Add Account</b></html>");
+        ManageAccountsIcon1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        ManageAccountsIcon1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ManageAccountsIcon1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        ManageAccountsIcon1.setMaximumSize(new java.awt.Dimension(117, 112));
+        ManageAccountsIcon1.setMinimumSize(new java.awt.Dimension(117, 112));
+        ManageAccountsIcon1.setPreferredSize(new java.awt.Dimension(117, 112));
+        ManageAccountsIcon1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        ManageAccountsIcon1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ManageAccountsIcon1MouseClicked(evt);
+            }
+        });
+
+        AddAccountBackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/epoverty/back.png"))); // NOI18N
+        AddAccountBackButton.setText("<html><b> Back  &nbsp;</b></html>");
+        AddAccountBackButton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        AddAccountBackButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        AddAccountBackButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AddAccountBackButtonMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout viewAccountLayout = new javax.swing.GroupLayout(viewAccount.getContentPane());
+        viewAccount.getContentPane().setLayout(viewAccountLayout);
+        viewAccountLayout.setHorizontalGroup(
+            viewAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewAccountLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(viewAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(AddAccountAccountID)
+                    .addComponent(middleNameLabel1)
+                    .addComponent(AddAccountDescriptionLabel)
+                    .addComponent(AddAccountBalanceLabel)
+                    .addComponent(AddAccountRedirectLabel)
+                    .addComponent(AddAccountBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(viewAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(AddAccountAccountName)
+                    .addComponent(AddAccountDescriptionTextBox, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                    .addComponent(AddAccountAccountIDTextBox)
+                    .addComponent(AddAccountBalanceTextBox)
+                    .addComponent(ManageAccountsIcon1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewAccountLayout.createSequentialGroup()
+                        .addComponent(AddAccountSaveButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(AddAccountCancelButton))
+                    .addComponent(AddAccountRedirectTextBox, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        viewAccountLayout.setVerticalGroup(
+            viewAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewAccountLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(viewAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ManageAccountsIcon1, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                    .addGroup(viewAccountLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(AddAccountBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(viewAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddAccountAccountID)
+                    .addComponent(AddAccountAccountIDTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(viewAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(middleNameLabel1)
+                    .addComponent(AddAccountAccountName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(viewAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddAccountDescriptionLabel)
+                    .addComponent(AddAccountDescriptionTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(viewAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddAccountBalanceLabel)
+                    .addComponent(AddAccountBalanceTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(viewAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddAccountRedirectLabel)
+                    .addComponent(AddAccountRedirectTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(viewAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddAccountCancelButton)
+                    .addComponent(AddAccountSaveButton))
+                .addContainerGap())
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1137,6 +1279,11 @@ public class MainWindow extends javax.swing.JFrame
         AccountsSearchjLabel.setText("Search");
 
         accountsCreateAccountButton.setText("Create Account");
+        accountsCreateAccountButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                accountsCreateAccountButtonMouseClicked(evt);
+            }
+        });
         accountsCreateAccountButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 accountsCreateAccountButtonActionPerformed(evt);
@@ -1681,6 +1828,75 @@ public class MainWindow extends javax.swing.JFrame
         }
     }//GEN-LAST:event_AccountsJTableMouseClicked
 
+    private void AddAccountSaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddAccountSaveButtonActionPerformed
+        //Create a new Instace of the Accounts Object
+        Accounts act = new Accounts();
+        //Get the data items from the Update Account Panel and set them into the 
+        //accounts object
+        act.accountID = Integer.parseInt(AddAccountAccountIDTextBox.getText());
+        act.accountName = AddAccountAccountName.getText();
+        act.description = AddAccountDescriptionTextBox.getText();
+        act.balance = Double.parseDouble(AddAccountBalanceTextBox.getText());
+        act.autoRedirectPercent = Double.parseDouble(AddAccountRedirectTextBox.getText());
+        System.out.println("In Save Account Action ");
+        //Hide the View Accounts Panel
+        viewAccount.setVisible( false );
+        //Save the new account, or update the account details.
+        act.SaveAccount();
+ 
+        
+    }//GEN-LAST:event_AddAccountSaveButtonActionPerformed
+
+    private void AddAccountCancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddAccountCancelButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AddAccountCancelButtonActionPerformed
+
+    private void viewAccountWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_viewAccountWindowClosed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewAccountWindowClosed
+
+    private void ManageAccountsIcon1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ManageAccountsIcon1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ManageAccountsIcon1MouseClicked
+
+    private void AddAccountBackButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddAccountBackButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AddAccountBackButtonMouseClicked
+
+    private void accountsCreateAccountButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accountsCreateAccountButtonMouseClicked
+       /* int selected = userTable.getSelectedRow();
+        String email = (String) userTable.getValueAt( selected, 3);
+        if ( selected != -1 ) {
+            Person person = new Person();
+            try {
+                person.LoadPersonWhere( new String[]{ "emailAddress" }, new String[]{ (email) } );
+
+                firstNameField.setText( person.firstName );
+                middleNameField.setText( person.middleName );
+                lastNameField.setText( person.lastName );
+                emailField.setText( person.emailAddress );
+                phoneField.setText( person.phoneNumber );
+                streetField.setText( person.addressStreet );
+                cityField.setText( person.addressCity );
+                stateField.setText( person.addressState );
+                zipField.setText( person.addressZip );
+                personIdLabel.setText( person.personID + "" );
+                if ( person.photo != null ) {
+                    photoLabel.setIcon( new ImageIcon( person.photo ) );
+                } else {
+                    photoLabel.setIcon( new ImageIcon( ImageIO.read( new File( "noimage.jpg" ) ) ) );
+                }
+
+                this.person = person;
+                * 
+                */
+                viewAccount.setVisible( true );
+    }//GEN-LAST:event_accountsCreateAccountButtonMouseClicked
+
+    private void AddAccountSaveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddAccountSaveButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AddAccountSaveButtonMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1739,7 +1955,20 @@ public class MainWindow extends javax.swing.JFrame
     private javax.swing.JPanel AccountsPanel;
     private javax.swing.JTextField AccountsSearchBox;
     private javax.swing.JLabel AccountsSearchjLabel;
+    private javax.swing.JLabel AddAccountAccountID;
+    private javax.swing.JTextField AddAccountAccountIDTextBox;
+    private javax.swing.JTextField AddAccountAccountName;
+    private javax.swing.JLabel AddAccountBackButton;
+    private javax.swing.JLabel AddAccountBalanceLabel;
+    private javax.swing.JTextField AddAccountBalanceTextBox;
+    private javax.swing.JButton AddAccountCancelButton;
+    private javax.swing.JLabel AddAccountDescriptionLabel;
+    private javax.swing.JTextField AddAccountDescriptionTextBox;
+    private javax.swing.JLabel AddAccountRedirectLabel;
+    private javax.swing.JTextField AddAccountRedirectTextBox;
+    private javax.swing.JButton AddAccountSaveButton;
     private javax.swing.JLabel ManageAccountsIcon;
+    private javax.swing.JLabel ManageAccountsIcon1;
     private javax.swing.JLabel ManageAccountsIcon2;
     private javax.swing.JButton accountSearchButton;
     private javax.swing.JButton accountsCreateAccountButton;
@@ -1820,6 +2049,7 @@ public class MainWindow extends javax.swing.JFrame
     private javax.swing.JPanel manageUsersTab;
     private javax.swing.JTextField middleNameField;
     private javax.swing.JLabel middleNameLabel;
+    private javax.swing.JLabel middleNameLabel1;
     private javax.swing.JPasswordField passwordFieldLogin;
     private javax.swing.JLabel passwordLabelLogin;
     private javax.swing.JPanel peoplePanel;
@@ -1836,6 +2066,7 @@ public class MainWindow extends javax.swing.JFrame
     private javax.swing.JTextField streetField;
     private javax.swing.JLabel streetLabel;
     private javax.swing.JTable userTable;
+    private javax.swing.JDialog viewAccount;
     private javax.swing.JDialog viewExpedition;
     private javax.swing.JDialog viewPerson;
     private javax.swing.JTextField zipField;

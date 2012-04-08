@@ -89,7 +89,7 @@ public class Accounts {
     public void SaveAccount() {
         String query;
         //new account of the account ID = 0
-        if (accountID == 0) 
+        if (accountID != 1 || accountID != 2 || accountID != 3 ) 
         {
             //Greate prepaired statement to do the insert
             try {
@@ -185,7 +185,7 @@ public class Accounts {
     //Create jTree object to stay consistant with other objects in project
     public Object[] jTree()
     {
-        return new Object[]{accountID, accountName, description, balance};
+        return new Object[]{accountID, accountName, description, balance, autoRedirectPercent};
     }
     
     //Get and set methods
