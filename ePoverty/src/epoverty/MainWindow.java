@@ -624,8 +624,9 @@ public class MainWindow extends javax.swing.JFrame
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        viewAccount.setTitle("Add Account");
         viewAccount.setAlwaysOnTop(true);
-        viewAccount.setBounds(new java.awt.Rectangle(0, 0, 450, 450));
+        viewAccount.setBounds(new java.awt.Rectangle(0, 0, 300, 350));
         viewAccount.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 viewAccountWindowClosed(evt);
@@ -712,14 +713,14 @@ public class MainWindow extends javax.swing.JFrame
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(AddAccountCancelButton))
                     .addComponent(AddAccountRedirectTextBox, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         viewAccountLayout.setVerticalGroup(
             viewAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewAccountLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(viewAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ManageAccountsIcon1, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                    .addComponent(ManageAccountsIcon1, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
                     .addGroup(viewAccountLayout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addComponent(AddAccountBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1658,11 +1659,21 @@ public class MainWindow extends javax.swing.JFrame
             //selectedAccount = 1;
             Account_Transaction_data[] accountTransaction = Account_Transaction_data.getTransactions(selectedAccount);
         //}
-        
-        for ( Account_Transaction_data at : accountTransaction ) {
-            transactionModel.addRow( at.jTree() );
+        transactionModel.getDataVector().removeAllElements();
+        if(accountTransaction != null)
+        {
+            System.out.println("In Account Transaction not equal null. ");
+            for ( Account_Transaction_data at : accountTransaction ) {
+                transactionModel.addRow( at.jTree() );
+            }
         }
-        
+        else
+        {
+            System.out.println("In Account Transaction equals null. ");
+            Object[] blankStuff = new Object[]{"No ", "Transactions ", "Found ", "Select ", "Other account."};
+            transactionModel.getDataVector().removeAllElements();
+            transactionModel.addRow(blankStuff);
+        }   
         
         cl.show( jPanel3, "card5" );
     }//GEN-LAST:event_ManageAccountsIconMouseClicked
@@ -1754,7 +1765,7 @@ public class MainWindow extends javax.swing.JFrame
     }//GEN-LAST:event_AccountsSearchBoxjButton5ActionPerformed
 
     private void accountsCreateAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountsCreateAccountButtonActionPerformed
-        Accounts ac = new Accounts();
+       /* Accounts ac = new Accounts();
         
             try {
                 ac.LoadAccount(0);
@@ -1786,7 +1797,7 @@ public class MainWindow extends javax.swing.JFrame
             }
         
 
-        
+        */
 
         
     }//GEN-LAST:event_accountsCreateAccountButtonActionPerformed
@@ -1822,10 +1833,38 @@ public class MainWindow extends javax.swing.JFrame
         System.out.println("Value of selectedAccount is: " + selectedAccount);
             Account_Transaction_data[] accountTransaction = Account_Transaction_data.getTransactions(selectedAccount);
         //}
-        
+            String ept = "";
+        Object[] emptyString = new Object[]{ept, ept, ept, ept, ept};
+
+        if(accountTransaction.length != 0)
+        {
+            transactionModel.getDataVector().removeAllElements();
+            transactionModel.getDataVector().clear();
+            System.out.println("Length is " + accountTransaction.length);
+            System.out.println("Account Transaction value does not equal null. ");
+            for ( Account_Transaction_data at : accountTransaction ) {
+                transactionModel.addRow( at.jTree() );
+            }
+
+            accountTransaction = null;
+        }
+        else
+        {
+            System.out.println("In Account Transaction equals null. ");
+            
+            Object[] blankStuff = new Object[]{"", "", 0, "", ""};
+            transactionModel.getDataVector().removeAllElements();
+            transactionModel.addRow(blankStuff);
+        }   
+            
+        /*    
         for ( Account_Transaction_data at : accountTransaction ) {
             transactionModel.addRow( at.jTree() );
         }
+        * 
+        */
+        
+        
     }//GEN-LAST:event_AccountsJTableMouseClicked
 
     private void AddAccountSaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddAccountSaveButtonActionPerformed
@@ -1848,7 +1887,7 @@ public class MainWindow extends javax.swing.JFrame
     }//GEN-LAST:event_AddAccountSaveButtonActionPerformed
 
     private void AddAccountCancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddAccountCancelButtonActionPerformed
-        // TODO add your handling code here:
+        viewAccount.setVisible( false );
     }//GEN-LAST:event_AddAccountCancelButtonActionPerformed
 
     private void viewAccountWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_viewAccountWindowClosed
@@ -1860,7 +1899,7 @@ public class MainWindow extends javax.swing.JFrame
     }//GEN-LAST:event_ManageAccountsIcon1MouseClicked
 
     private void AddAccountBackButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddAccountBackButtonMouseClicked
-        // TODO add your handling code here:
+        viewAccount.setVisible( false );
     }//GEN-LAST:event_AddAccountBackButtonMouseClicked
 
     private void accountsCreateAccountButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accountsCreateAccountButtonMouseClicked
