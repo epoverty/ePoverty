@@ -1,22 +1,19 @@
 package epoverty;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.imageio.ImageIO;
 
 /**
  *
- * @author Mike Larsen
+ * @author Mike Larse
  */
 public class Accounts {
     
     //Create Vars for all fields on the table
+    
+    //Test Commit
 
     public int accountID = 0;
     public String accountName = "";
@@ -86,11 +83,13 @@ public class Accounts {
     public String ToString() {
         return accountName + " " + description + " " + balance;
     }
+    
+    
     //save account method
     public void SaveAccount() {
         String query;
         //new account of the account ID = 0
-        if (accountID == 0) 
+        if (accountID != 1 || accountID != 2 || accountID != 3 ) 
         {
             //Greate prepaired statement to do the insert
             try {
@@ -116,7 +115,7 @@ public class Accounts {
         {
             try {
                 String sql = "UPDATE accounts SET accountName= ? , description= ? , balance= ? , autoRedirectPercent= ? "
-                        + "WHERE personId= ? ";
+                        + "WHERE accountID= ? ";
                 ps = MySQLInterface.dbConn.prepareStatement(sql);//prepared statements use variable places defined by ?s, indexed starting at 1
                 //Populate the Prepared Statement
                 ps.setString(1, accountName);
@@ -180,13 +179,13 @@ public class Accounts {
         }
 
         //return our ArrayList of accounts as an array
-        Accounts[] objects = accounts.toArray(new Accounts[accounts.size()]); //convert the arraylist to an array of Person objects
+        Accounts[] objects = accounts.toArray(new Accounts[accounts.size()]); //convert the arraylist to an array of Accounts objects
         return objects;
     }
     //Create jTree object to stay consistant with other objects in project
     public Object[] jTree()
     {
-        return new Object[]{accountID, accountName, description, balance};
+        return new Object[]{accountID, accountName, description, balance, autoRedirectPercent};
     }
     
     //Get and set methods
