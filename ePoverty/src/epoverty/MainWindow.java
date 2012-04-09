@@ -643,6 +643,8 @@ public class MainWindow extends javax.swing.JFrame
 
         AddAccountRedirectLabel.setText("Redirect %:");
 
+        AddAccountAccountIDTextBox.setFocusable(false);
+
         AddAccountSaveButton.setText("Save");
         AddAccountSaveButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1635,6 +1637,7 @@ public class MainWindow extends javax.swing.JFrame
             model.addRow( account.jTree() );
         }
         
+        
         DefaultTableModel transactionModel = (DefaultTableModel) AccountTransactionsJTable.getModel();
         transactionModel.getDataVector().removeAllElements();
         int selected;
@@ -1903,33 +1906,14 @@ public class MainWindow extends javax.swing.JFrame
     }//GEN-LAST:event_AddAccountBackButtonMouseClicked
 
     private void accountsCreateAccountButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accountsCreateAccountButtonMouseClicked
-       /* int selected = userTable.getSelectedRow();
-        String email = (String) userTable.getValueAt( selected, 3);
-        if ( selected != -1 ) {
-            Person person = new Person();
-            try {
-                person.LoadPersonWhere( new String[]{ "emailAddress" }, new String[]{ (email) } );
-
-                firstNameField.setText( person.firstName );
-                middleNameField.setText( person.middleName );
-                lastNameField.setText( person.lastName );
-                emailField.setText( person.emailAddress );
-                phoneField.setText( person.phoneNumber );
-                streetField.setText( person.addressStreet );
-                cityField.setText( person.addressCity );
-                stateField.setText( person.addressState );
-                zipField.setText( person.addressZip );
-                personIdLabel.setText( person.personID + "" );
-                if ( person.photo != null ) {
-                    photoLabel.setIcon( new ImageIcon( person.photo ) );
-                } else {
-                    photoLabel.setIcon( new ImageIcon( ImageIO.read( new File( "noimage.jpg" ) ) ) );
-                }
-
-                this.person = person;
-                * 
-                */
-                viewAccount.setVisible( true );
+        
+        Accounts[] Accounts = accounts.getAccounts();
+        int i = Accounts.length;
+        i = i + 1;
+        String t;
+        t = Integer.toString(i);
+        AddAccountAccountIDTextBox.setText(t);
+        viewAccount.setVisible( true );
     }//GEN-LAST:event_accountsCreateAccountButtonMouseClicked
 
     private void AddAccountSaveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddAccountSaveButtonMouseClicked
