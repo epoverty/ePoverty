@@ -237,6 +237,21 @@ public class MainWindow extends javax.swing.JFrame
         AddAccountCancelButton = new javax.swing.JButton();
         ManageAccountsIcon1 = new javax.swing.JLabel();
         AddAccountBackButton = new javax.swing.JLabel();
+        updateAccount = new javax.swing.JDialog();
+        AddAccountAccountID1 = new javax.swing.JLabel();
+        middleNameLabel2 = new javax.swing.JLabel();
+        AddAccountDescriptionLabel1 = new javax.swing.JLabel();
+        AddAccountBalanceLabel1 = new javax.swing.JLabel();
+        AddAccountRedirectLabel1 = new javax.swing.JLabel();
+        UpdateAccountAccountIDTextBox = new javax.swing.JTextField();
+        UpdateAccountAccountName = new javax.swing.JTextField();
+        UpdateAccountDescriptionTextBox = new javax.swing.JTextField();
+        UpdateAccountBalanceTextBox = new javax.swing.JTextField();
+        UpdateAccountRedirectTextBox = new javax.swing.JTextField();
+        UpdateAccountSaveButton = new javax.swing.JButton();
+        UpdateAccountCancelButton = new javax.swing.JButton();
+        ManageAccountsIcon3 = new javax.swing.JLabel();
+        UpdateAccountBackButton = new javax.swing.JLabel();
         contentContainer = new javax.swing.JPanel();
         loginPanel = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -294,6 +309,7 @@ public class MainWindow extends javax.swing.JFrame
         jScrollPane6 = new javax.swing.JScrollPane();
         AccountTransactionsJTable = new javax.swing.JTable();
         jLabel19 = new javax.swing.JLabel();
+        accountsUpdateAccountButton = new javax.swing.JButton();
         ePovertyLogo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -751,6 +767,137 @@ public class MainWindow extends javax.swing.JFrame
                 .addGroup(viewAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AddAccountCancelButton)
                     .addComponent(AddAccountSaveButton))
+                .addContainerGap())
+        );
+
+        updateAccount.setTitle("Add Account");
+        updateAccount.setAlwaysOnTop(true);
+        updateAccount.setBounds(new java.awt.Rectangle(0, 0, 450, 500));
+        updateAccount.setPreferredSize(new java.awt.Dimension(450, 500));
+        updateAccount.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                updateAccountWindowClosed(evt);
+            }
+        });
+
+        AddAccountAccountID1.setText("AccountID:");
+
+        middleNameLabel2.setText("AccountName:");
+
+        AddAccountDescriptionLabel1.setText("Description:");
+
+        AddAccountBalanceLabel1.setText("Balance:");
+
+        AddAccountRedirectLabel1.setText("Redirect %:");
+
+        UpdateAccountAccountIDTextBox.setFocusable(false);
+
+        UpdateAccountSaveButton.setText("Update Account");
+        UpdateAccountSaveButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                UpdateAccountSaveButtonMouseClicked(evt);
+            }
+        });
+        UpdateAccountSaveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateAccountSaveButtonActionPerformed(evt);
+            }
+        });
+
+        UpdateAccountCancelButton.setText("Cancel");
+        UpdateAccountCancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateAccountCancelButtonActionPerformed(evt);
+            }
+        });
+
+        ManageAccountsIcon3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ManageAccountsIcon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/epoverty/money_64.png"))); // NOI18N
+        ManageAccountsIcon3.setText("<html><br><b>Update Account</b></html>");
+        ManageAccountsIcon3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        ManageAccountsIcon3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ManageAccountsIcon3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        ManageAccountsIcon3.setMaximumSize(new java.awt.Dimension(117, 112));
+        ManageAccountsIcon3.setMinimumSize(new java.awt.Dimension(117, 112));
+        ManageAccountsIcon3.setPreferredSize(new java.awt.Dimension(117, 112));
+        ManageAccountsIcon3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        ManageAccountsIcon3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ManageAccountsIcon3MouseClicked(evt);
+            }
+        });
+
+        UpdateAccountBackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/epoverty/back.png"))); // NOI18N
+        UpdateAccountBackButton.setText("<html><b> Back  &nbsp;</b></html>");
+        UpdateAccountBackButton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        UpdateAccountBackButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        UpdateAccountBackButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                UpdateAccountBackButtonMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout updateAccountLayout = new javax.swing.GroupLayout(updateAccount.getContentPane());
+        updateAccount.getContentPane().setLayout(updateAccountLayout);
+        updateAccountLayout.setHorizontalGroup(
+            updateAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(updateAccountLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(updateAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(AddAccountAccountID1)
+                    .addComponent(middleNameLabel2)
+                    .addComponent(AddAccountDescriptionLabel1)
+                    .addComponent(AddAccountBalanceLabel1)
+                    .addComponent(AddAccountRedirectLabel1)
+                    .addComponent(UpdateAccountBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(updateAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(UpdateAccountAccountName)
+                    .addComponent(UpdateAccountDescriptionTextBox)
+                    .addComponent(UpdateAccountAccountIDTextBox)
+                    .addComponent(UpdateAccountBalanceTextBox)
+                    .addComponent(ManageAccountsIcon3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, updateAccountLayout.createSequentialGroup()
+                        .addComponent(UpdateAccountSaveButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(UpdateAccountCancelButton))
+                    .addComponent(UpdateAccountRedirectTextBox, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap(127, Short.MAX_VALUE))
+        );
+        updateAccountLayout.setVerticalGroup(
+            updateAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, updateAccountLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(updateAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ManageAccountsIcon3, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+                    .addGroup(updateAccountLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(UpdateAccountBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(updateAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddAccountAccountID1)
+                    .addComponent(UpdateAccountAccountIDTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(updateAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(middleNameLabel2)
+                    .addComponent(UpdateAccountAccountName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(updateAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddAccountDescriptionLabel1)
+                    .addComponent(UpdateAccountDescriptionTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(updateAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddAccountBalanceLabel1)
+                    .addComponent(UpdateAccountBalanceTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(updateAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddAccountRedirectLabel1)
+                    .addComponent(UpdateAccountRedirectTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(updateAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(UpdateAccountCancelButton)
+                    .addComponent(UpdateAccountSaveButton))
                 .addContainerGap())
         );
 
@@ -1364,6 +1511,18 @@ public class MainWindow extends javax.swing.JFrame
 
         jLabel19.setText("Transactions: ");
 
+        accountsUpdateAccountButton.setText("Update Account");
+        accountsUpdateAccountButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                accountsUpdateAccountButtonMouseClicked(evt);
+            }
+        });
+        accountsUpdateAccountButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accountsUpdateAccountButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout AccountsPanelLayout = new javax.swing.GroupLayout(AccountsPanel);
         AccountsPanel.setLayout(AccountsPanelLayout);
         AccountsPanelLayout.setHorizontalGroup(
@@ -1379,6 +1538,8 @@ public class MainWindow extends javax.swing.JFrame
                         .addGap(343, 343, 343)
                         .addComponent(ManageAccountsIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(accountsUpdateAccountButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(accountsCreateAccountButton))
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 1206, Short.MAX_VALUE))
                 .addContainerGap())
@@ -1403,7 +1564,9 @@ public class MainWindow extends javax.swing.JFrame
                         .addContainerGap()
                         .addComponent(AccountsBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(accountsCreateAccountButton))
+                        .addGroup(AccountsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(accountsCreateAccountButton)
+                            .addComponent(accountsUpdateAccountButton)))
                     .addComponent(ManageAccountsIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
                 .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1771,7 +1934,7 @@ public class MainWindow extends javax.swing.JFrame
        /* Accounts ac = new Accounts();
         
             try {
-                ac.LoadAccount(0);
+                ac.GetAccount(0);
 
                 firstNameField.setText( person.firstName );
                 middleNameField.setText( person.middleName );
@@ -1821,12 +1984,16 @@ public class MainWindow extends javax.swing.JFrame
             {
                 
                 selectedAccount = 1;
+                accountsUpdateAccountButton.setFocusable(false);
+                accountsUpdateAccountButton.disable();
             }
         else
             {
+                accountsUpdateAccountButton.setFocusable(true);
                 //System.out.println("In else of get row" + AccountsJTable.getSelectedRow());
                 selected = AccountsJTable.getSelectedRow();
                 selectedAccount = (int) AccountsJTable.getValueAt( selected, 0);
+                accountsUpdateAccountButton.enable(true);
             }
         //= AccountsJTable.getSelectedRow();
         //if(selected != 0)
@@ -1920,6 +2087,92 @@ public class MainWindow extends javax.swing.JFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_AddAccountSaveButtonMouseClicked
 
+    private void UpdateAccountSaveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UpdateAccountSaveButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UpdateAccountSaveButtonMouseClicked
+
+    private void UpdateAccountSaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateAccountSaveButtonActionPerformed
+        //Create a new Instace of the Accounts Object
+        Accounts act = new Accounts();
+        //Get the data items from the Update Account Panel and set them into the 
+        //accounts object
+        act.accountID = Integer.parseInt(UpdateAccountAccountIDTextBox.getText());
+        act.accountName = UpdateAccountAccountName.getText();
+        act.description = UpdateAccountDescriptionTextBox.getText();
+        act.balance = Double.parseDouble(UpdateAccountBalanceTextBox.getText());
+        act.autoRedirectPercent = Double.parseDouble(UpdateAccountRedirectTextBox.getText());
+        System.out.println("In Update Account Action ");
+        //Hide the View Accounts Panel
+        updateAccount.setVisible( false );
+        //Save the new account, or update the account details.
+        act.updateAccount();
+    }//GEN-LAST:event_UpdateAccountSaveButtonActionPerformed
+
+    private void UpdateAccountCancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateAccountCancelButtonActionPerformed
+        updateAccount.setVisible( false );
+    }//GEN-LAST:event_UpdateAccountCancelButtonActionPerformed
+
+    private void ManageAccountsIcon3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ManageAccountsIcon3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ManageAccountsIcon3MouseClicked
+
+    private void UpdateAccountBackButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UpdateAccountBackButtonMouseClicked
+        updateAccount.setVisible( false );
+    }//GEN-LAST:event_UpdateAccountBackButtonMouseClicked
+
+    private void updateAccountWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_updateAccountWindowClosed
+        updateAccount.setVisible( false );
+    }//GEN-LAST:event_updateAccountWindowClosed
+
+    private void accountsUpdateAccountButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accountsUpdateAccountButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_accountsUpdateAccountButtonMouseClicked
+
+    private void accountsUpdateAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountsUpdateAccountButtonActionPerformed
+        //Accounts[] Accounts = accounts.getAccounts();
+        
+        DefaultTableModel model = (DefaultTableModel) AccountsJTable.getModel();
+        int selected;
+        int selectedAccount;
+        Accounts UpdateAccounts = new Accounts();
+        
+        if(AccountsJTable.getSelectedRow() == -1 )
+            {
+                System.out.println("In If of get row");
+                selectedAccount = 1;
+                //accountsUpdateAccountButton.setFocusable(false);
+                UpdateAccounts = UpdateAccounts.GetAccount(selectedAccount);
+            }
+        else
+            {
+                //accountsUpdateAccountButton.setFocusable(true);
+                System.out.println("In else of get row" + AccountsJTable.getSelectedRow());
+                selected = AccountsJTable.getSelectedRow();
+                selectedAccount = (int) AccountsJTable.getValueAt( selected, 0);
+                System.out.println("Select Account is: " + selectedAccount);
+                UpdateAccounts = UpdateAccounts.GetAccount(selectedAccount);
+                
+            }
+        //Accounts UpdateAccounts = accounts.GetAccount(selectedAccount);
+        String accountID = String.valueOf(UpdateAccounts.accountID);
+        UpdateAccountAccountIDTextBox.setText(accountID);
+        UpdateAccountAccountName.setText(UpdateAccounts.accountName);
+        UpdateAccountDescriptionTextBox.setText(UpdateAccounts.description);
+        String accountBalance = String.valueOf(UpdateAccounts.balance);
+        UpdateAccountBalanceTextBox.setText(accountBalance);
+        String accountRedirect = String.valueOf(UpdateAccounts.autoRedirectPercent);
+        UpdateAccountRedirectTextBox.setText(accountRedirect);
+        
+        
+        updateAccount.setVisible( true );
+                
+        
+                
+                
+                
+                
+    }//GEN-LAST:event_accountsUpdateAccountButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1979,22 +2232,36 @@ public class MainWindow extends javax.swing.JFrame
     private javax.swing.JTextField AccountsSearchBox;
     private javax.swing.JLabel AccountsSearchjLabel;
     private javax.swing.JLabel AddAccountAccountID;
+    private javax.swing.JLabel AddAccountAccountID1;
     private javax.swing.JTextField AddAccountAccountIDTextBox;
     private javax.swing.JTextField AddAccountAccountName;
     private javax.swing.JLabel AddAccountBackButton;
     private javax.swing.JLabel AddAccountBalanceLabel;
+    private javax.swing.JLabel AddAccountBalanceLabel1;
     private javax.swing.JTextField AddAccountBalanceTextBox;
     private javax.swing.JButton AddAccountCancelButton;
     private javax.swing.JLabel AddAccountDescriptionLabel;
+    private javax.swing.JLabel AddAccountDescriptionLabel1;
     private javax.swing.JTextField AddAccountDescriptionTextBox;
     private javax.swing.JLabel AddAccountRedirectLabel;
+    private javax.swing.JLabel AddAccountRedirectLabel1;
     private javax.swing.JTextField AddAccountRedirectTextBox;
     private javax.swing.JButton AddAccountSaveButton;
     private javax.swing.JLabel ManageAccountsIcon;
     private javax.swing.JLabel ManageAccountsIcon1;
     private javax.swing.JLabel ManageAccountsIcon2;
+    private javax.swing.JLabel ManageAccountsIcon3;
+    private javax.swing.JTextField UpdateAccountAccountIDTextBox;
+    private javax.swing.JTextField UpdateAccountAccountName;
+    private javax.swing.JLabel UpdateAccountBackButton;
+    private javax.swing.JTextField UpdateAccountBalanceTextBox;
+    private javax.swing.JButton UpdateAccountCancelButton;
+    private javax.swing.JTextField UpdateAccountDescriptionTextBox;
+    private javax.swing.JTextField UpdateAccountRedirectTextBox;
+    private javax.swing.JButton UpdateAccountSaveButton;
     private javax.swing.JButton accountSearchButton;
     private javax.swing.JButton accountsCreateAccountButton;
+    private javax.swing.JButton accountsUpdateAccountButton;
     private javax.swing.JPanel addressPanel;
     private javax.swing.JPanel adminPanel;
     private javax.swing.JPanel adminTab;
@@ -2073,6 +2340,7 @@ public class MainWindow extends javax.swing.JFrame
     private javax.swing.JTextField middleNameField;
     private javax.swing.JLabel middleNameLabel;
     private javax.swing.JLabel middleNameLabel1;
+    private javax.swing.JLabel middleNameLabel2;
     private javax.swing.JPasswordField passwordFieldLogin;
     private javax.swing.JLabel passwordLabelLogin;
     private javax.swing.JPanel peoplePanel;
@@ -2088,6 +2356,7 @@ public class MainWindow extends javax.swing.JFrame
     private javax.swing.JLabel stateLabel;
     private javax.swing.JTextField streetField;
     private javax.swing.JLabel streetLabel;
+    private javax.swing.JDialog updateAccount;
     private javax.swing.JTable userTable;
     private javax.swing.JDialog viewAccount;
     private javax.swing.JDialog viewExpedition;
