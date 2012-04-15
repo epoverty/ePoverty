@@ -862,14 +862,14 @@ public class MainWindow extends javax.swing.JFrame
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(UpdateAccountCancelButton))
                     .addComponent(UpdateAccountRedirectTextBox, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(127, Short.MAX_VALUE))
+                .addContainerGap(177, Short.MAX_VALUE))
         );
         updateAccountLayout.setVerticalGroup(
             updateAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, updateAccountLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(updateAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ManageAccountsIcon3, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+                    .addComponent(ManageAccountsIcon3, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
                     .addGroup(updateAccountLayout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addComponent(UpdateAccountBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1451,9 +1451,16 @@ public class MainWindow extends javax.swing.JFrame
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         AccountsJTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1461,12 +1468,12 @@ public class MainWindow extends javax.swing.JFrame
                 AccountsJTableMouseClicked(evt);
             }
         });
+        AccountsJTable.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                AccountsJTableKeyPressed(evt);
+            }
+        });
         jScrollPane4.setViewportView(AccountsJTable);
-        AccountsJTable.getColumnModel().getColumn(0).setHeaderValue("AccountID");
-        AccountsJTable.getColumnModel().getColumn(1).setHeaderValue("AccountName");
-        AccountsJTable.getColumnModel().getColumn(2).setHeaderValue("Description");
-        AccountsJTable.getColumnModel().getColumn(3).setHeaderValue("Balance");
-        AccountsJTable.getColumnModel().getColumn(4).setHeaderValue("autoRedirectPercent");
 
         ManageAccountsIcon2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ManageAccountsIcon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/epoverty/money_64.png"))); // NOI18N
@@ -1793,14 +1800,22 @@ public class MainWindow extends javax.swing.JFrame
     {//GEN-HEADEREND:event_ManageAccountsIconMouseClicked
         CardLayout cl = ( CardLayout ) jPanel3.getLayout();
 
-        DefaultTableModel model = (DefaultTableModel) AccountsJTable.getModel();
+       /** DefaultTableModel model = (DefaultTableModel) AccountsJTable.getModel();
         model.getDataVector().removeAllElements();
         Accounts[] Accounts = accounts.getAccounts();
         for ( Accounts account : Accounts ) {
             model.addRow( account.jTree() );
         }
+        * 
+        * 
+        * /
+        */
         
+        this.updateAccountsInAccountsTab();
+                
+        this.updateTransactionsInAccountsTab();
         
+        /**
         DefaultTableModel transactionModel = (DefaultTableModel) AccountTransactionsJTable.getModel();
         transactionModel.getDataVector().removeAllElements();
         int selected;
@@ -1839,7 +1854,8 @@ public class MainWindow extends javax.swing.JFrame
             Object[] blankStuff = new Object[]{"No ", "Transactions ", "Found ", "Select ", "Other account."};
             transactionModel.getDataVector().removeAllElements();
             transactionModel.addRow(blankStuff);
-        }   
+        }  
+        * */
         
         cl.show( jPanel3, "card5" );
     }//GEN-LAST:event_ManageAccountsIconMouseClicked
@@ -1974,7 +1990,9 @@ public class MainWindow extends javax.swing.JFrame
 
     private void AccountsJTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AccountsJTableMouseClicked
         // TODO add your handling code here:
+        this.updateTransactionsInAccountsTab();
         
+        /**
         DefaultTableModel transactionModel = (DefaultTableModel) AccountTransactionsJTable.getModel();
         transactionModel.getDataVector().removeAllElements();
         int selected;
@@ -2052,10 +2070,82 @@ public class MainWindow extends javax.swing.JFrame
         viewAccount.setVisible( false );
         //Save the new account, or update the account details.
         act.SaveAccount();
- 
+        //Clear the selection on the AccountsJTable and refresh the data
+        ///updated after this.
+        AccountsJTable.clearSelection();
         
+        this.updateAccountsInAccountsTab();
+        
+        this.updateTransactionsInAccountsTab();
     }//GEN-LAST:event_AddAccountSaveButtonActionPerformed
 
+    private void updateAccountsInAccountsTab()
+    {
+        DefaultTableModel model = (DefaultTableModel) AccountsJTable.getModel();
+        model.getDataVector().removeAllElements();
+        Accounts[] Accounts = accounts.getAccounts();
+        for ( Accounts account : Accounts ) {
+            model.addRow( account.jTree() );
+        }
+    }
+    
+    private void updateTransactionsInAccountsTab()
+    {
+        DefaultTableModel transactionModel = (DefaultTableModel) AccountTransactionsJTable.getModel();
+        transactionModel.getDataVector().removeAllElements();
+        int selected;
+        int selectedAccount;
+        
+        if(AccountsJTable.getSelectedRow() == -1 )
+            {
+                
+                selectedAccount = 1;
+                accountsUpdateAccountButton.setFocusable(false);
+                accountsUpdateAccountButton.disable();
+            }
+        else
+            {
+                accountsUpdateAccountButton.setFocusable(true);
+                //System.out.println("In else of get row" + AccountsJTable.getSelectedRow());
+                selected = AccountsJTable.getSelectedRow();
+                selectedAccount = (int) AccountsJTable.getValueAt( selected, 0);
+                accountsUpdateAccountButton.enable(true);
+            }
+        //= AccountsJTable.getSelectedRow();
+        //if(selected != 0)
+        //{
+            //int selectedAccount = (int) AccountsJTable.getValueAt( selected, 1);
+            //selectedAccount = 1;
+        System.out.println("Value of selectedAccount is: " + selectedAccount);
+        transactionModel.getDataVector().removeAllElements();
+        Account_Transaction_data[] accountTransaction = Account_Transaction_data.getTransactions(selectedAccount);
+        //}
+            String ept = "";
+        Object[] emptyString = new Object[]{ept, ept, ept, ept, ept};
+
+        if(accountTransaction.length != 0)
+        {
+            transactionModel.getDataVector().removeAllElements();
+            transactionModel.getDataVector().clear();
+            System.out.println("Length is " + accountTransaction.length);
+            System.out.println("Account Transaction value does not equal null. ");
+            for ( Account_Transaction_data at : accountTransaction ) {
+                transactionModel.addRow( at.jTree() );
+            }
+
+            accountTransaction = null;
+        }
+        else
+        {
+            System.out.println("In Account Transaction equals null. ");
+            
+            Object[] blankStuff = new Object[]{"", "", 0, "", ""};
+            transactionModel.getDataVector().removeAllElements();
+            transactionModel.addRow(blankStuff);
+        }   
+            
+        
+    }
     private void AddAccountCancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddAccountCancelButtonActionPerformed
         viewAccount.setVisible( false );
     }//GEN-LAST:event_AddAccountCancelButtonActionPerformed
@@ -2106,6 +2196,75 @@ public class MainWindow extends javax.swing.JFrame
         updateAccount.setVisible( false );
         //Save the new account, or update the account details.
         act.updateAccount();
+            ///updated after this.
+        AccountsJTable.clearSelection();
+        /**DefaultTableModel model = (DefaultTableModel) AccountsJTable.getModel();
+        model.getDataVector().removeAllElements();
+        Accounts[] Accounts = accounts.getAccounts();
+        for ( Accounts account : Accounts ) {
+            model.addRow( account.jTree() );
+        }
+        * 
+        * /
+        */
+         this.updateAccountsInAccountsTab();
+           this.updateTransactionsInAccountsTab();
+           /**
+        
+        DefaultTableModel transactionModel = (DefaultTableModel) AccountTransactionsJTable.getModel();
+        transactionModel.getDataVector().removeAllElements();
+        int selected;
+        int selectedAccount;
+        
+        if(AccountsJTable.getSelectedRow() == -1 )
+            {
+                
+                selectedAccount = 1;
+                accountsUpdateAccountButton.setFocusable(false);
+                accountsUpdateAccountButton.disable();
+            }
+        else
+            {
+                accountsUpdateAccountButton.setFocusable(true);
+                //System.out.println("In else of get row" + AccountsJTable.getSelectedRow());
+                selected = AccountsJTable.getSelectedRow();
+                selectedAccount = (int) AccountsJTable.getValueAt( selected, 0);
+                accountsUpdateAccountButton.enable(true);
+            }
+        //= AccountsJTable.getSelectedRow();
+        //if(selected != 0)
+        //{
+            //int selectedAccount = (int) AccountsJTable.getValueAt( selected, 1);
+            //selectedAccount = 1;
+        System.out.println("Value of selectedAccount is: " + selectedAccount);
+        transactionModel.getDataVector().removeAllElements();
+        Account_Transaction_data[] accountTransaction = Account_Transaction_data.getTransactions(selectedAccount);
+        //}
+            String ept = "";
+        Object[] emptyString = new Object[]{ept, ept, ept, ept, ept};
+
+        if(accountTransaction.length != 0)
+        {
+            transactionModel.getDataVector().removeAllElements();
+            transactionModel.getDataVector().clear();
+            System.out.println("Length is " + accountTransaction.length);
+            System.out.println("Account Transaction value does not equal null. ");
+            for ( Account_Transaction_data at : accountTransaction ) {
+                transactionModel.addRow( at.jTree() );
+            }
+
+            accountTransaction = null;
+        }
+        else
+        {
+            System.out.println("In Account Transaction equals null. ");
+            
+            Object[] blankStuff = new Object[]{"", "", 0, "", ""};
+            transactionModel.getDataVector().removeAllElements();
+            transactionModel.addRow(blankStuff);
+        } 
+        */
+        
     }//GEN-LAST:event_UpdateAccountSaveButtonActionPerformed
 
     private void UpdateAccountCancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateAccountCancelButtonActionPerformed
@@ -2167,11 +2326,80 @@ public class MainWindow extends javax.swing.JFrame
         updateAccount.setVisible( true );
                 
         
-                
+        
                 
                 
                 
     }//GEN-LAST:event_accountsUpdateAccountButtonActionPerformed
+
+    private void AccountsJTableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AccountsJTableKeyPressed
+        // TODO add your handling code here:
+        
+        this.updateTransactionsInAccountsTab();
+        /**
+        DefaultTableModel transactionModel = (DefaultTableModel) AccountTransactionsJTable.getModel();
+        transactionModel.getDataVector().removeAllElements();
+        int selected;
+        int selectedAccount;
+        
+        if(AccountsJTable.getSelectedRow() == -1 )
+            {
+                
+                selectedAccount = 1;
+                accountsUpdateAccountButton.setFocusable(false);
+                accountsUpdateAccountButton.disable();
+            }
+        else
+            {
+                accountsUpdateAccountButton.setFocusable(true);
+                //System.out.println("In else of get row" + AccountsJTable.getSelectedRow());
+                selected = AccountsJTable.getSelectedRow();
+                selectedAccount = (int) AccountsJTable.getValueAt( selected, 0);
+                accountsUpdateAccountButton.enable(true);
+            }
+        //= AccountsJTable.getSelectedRow();
+        //if(selected != 0)
+        
+        //{
+            //int selectedAccount = (int) AccountsJTable.getValueAt( selected, 1);
+            //selectedAccount = 1;
+        System.out.println("Value of selectedAccount is: " + selectedAccount);
+        transactionModel.getDataVector().removeAllElements();
+        Account_Transaction_data[] accountTransaction = Account_Transaction_data.getTransactions(selectedAccount);
+        //}
+            String ept = "";
+        Object[] emptyString = new Object[]{ept, ept, ept, ept, ept};
+
+        if(accountTransaction.length != 0)
+        {
+            transactionModel.getDataVector().removeAllElements();
+            transactionModel.getDataVector().clear();
+            System.out.println("Length is " + accountTransaction.length);
+            System.out.println("Account Transaction value does not equal null. ");
+            for ( Account_Transaction_data at : accountTransaction ) {
+                transactionModel.addRow( at.jTree() );
+            }
+
+            accountTransaction = null;
+        }
+        else
+        {
+            System.out.println("In Account Transaction equals null. ");
+            
+            Object[] blankStuff = new Object[]{"", "", 0, "", ""};
+            transactionModel.getDataVector().removeAllElements();
+            transactionModel.addRow(blankStuff);
+        }   
+            
+        /*    
+        for ( Account_Transaction_data at : accountTransaction ) {
+            transactionModel.addRow( at.jTree() );
+        }
+        * 
+        */
+        
+        
+    }//GEN-LAST:event_AccountsJTableKeyPressed
 
     /**
      * @param args the command line arguments

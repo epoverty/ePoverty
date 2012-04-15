@@ -24,23 +24,31 @@ public class Accounts {
     private PreparedStatement ps; // To make the inserts and updates easier
 
     //Loads person data from the database using the personId number
-    public void LoadAccount(int aID) {
+    public Accounts GetAccount(int aID) {
         //Query To pull based on AccountID
+        System.out.println("In Get Account " );
+        Accounts localAccount = new Accounts();
         String query = "SELECT * FROM accounts WHERE accountId=" + aID;
         ResultSet rs = MySQLInterface.ExecuteQuery(query);
         //Populate data with returns from query
         try {
             rs.next();
-            accountID = rs.getInt("accountID");
-            accountName = rs.getString("accountName");
-            description = rs.getString("description");
-            balance = rs.getDouble("balance");
-            autoRedirectPercent = rs.getDouble("autoRedirectPercent");
+            System.out.println("in try ");
+            System.out.println("rs is " + rs.getInt("accountId"));
+            localAccount.accountID = rs.getInt("accountID");
+            System.out.println("rs is " + rs.getString("accountName"));
+            localAccount.accountName = rs.getString("accountName");
+            System.out.println("rs is " + rs.getString("description"));
+            localAccount.description = rs.getString("description");
+            System.out.println("rs is " + rs.getDouble("balance"));
+            localAccount.balance = rs.getDouble("balance");
+            System.out.println("rs is " + rs.getDouble("autoRedirectPercent"));
+            localAccount.autoRedirectPercent = rs.getDouble("autoRedirectPercent");
             
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-
+        return localAccount;
     }
 
     
@@ -85,35 +93,8 @@ public class Accounts {
     }
     
     
-    //save account method
-    public void SaveAccount() {
-        String query;
-        //new account of the account ID = 0
-        if (accountID != 1 || accountID != 2 || accountID != 3 ) 
-        {
-            //Greate prepaired statement to do the insert
-            try {
-                String sql = "insert into accounts (accountID, accountName, description, balance, autoRedirectPercent)"
-                        + " values (?, ?, ?, ?, ?)";
-                ps = MySQLInterface.dbConn.prepareStatement(sql);//prepared statements use variable places defined by ?s, indexed starting at 1
-                ps.setDouble(1, accountID);
-                ps.setString(2, accountName);
-                ps.setString(3, description);
-                ps.setDouble(4, balance);
-                ps.setDouble(5, autoRedirectPercent);
-                //Execute the prepaired statement
-                //ps.execute();
-                MySQLInterface.ExecutePreparedStatement(ps);
-                //Output the Stack if error is found
-            } catch (SQLException ex) {
-                System.out.println("Error during insert of account ID, Stack follows: " + ex.getMessage() + ex.getSQLState());
-                ex.printStackTrace();
-            }
-
-        } else
-            //UPdate the current Account ID record
-        {
-            try {
+    public void updateAccount(){
+        try {
                 String sql = "UPDATE accounts SET accountName= ? , description= ? , balance= ? , autoRedirectPercent= ? "
                         + "WHERE accountID= ? ";
                 ps = MySQLInterface.dbConn.prepareStatement(sql);//prepared statements use variable places defined by ?s, indexed starting at 1
@@ -132,18 +113,29 @@ public class Accounts {
                 System.out.println("Error while updating account table: " + ex.getMessage() + ex.getSQLState());
                 ex.printStackTrace();
             }
-
-        }
-        
-        if (accountID == 0) {
-            ResultSet rs = MySQLInterface.ExecuteQuery("SELECT LAST_INSERT_ID() LID;");
+    }
+    //save account method
+    public void SaveAccount() {
+        //new account of the account ID = 0
+            //Greate prepaired statement to do the insert
             try {
-                rs.next();
-                accountID = rs.getInt("LID");
-            } catch (Exception ex) {
+                String sql = "insert into accounts (accountID, accountName, description, balance, autoRedirectPercent)"
+                        + " values (?, ?, ?, ?, ?)";
+                ps = MySQLInterface.dbConn.prepareStatement(sql);//prepared statements use variable places defined by ?s, indexed starting at 1
+                ps.setDouble(1, accountID);
+                ps.setString(2, accountName);
+                ps.setString(3, description);
+                ps.setDouble(4, balance);
+                ps.setDouble(5, autoRedirectPercent);
+                //Execute the prepaired statement
+                //ps.execute();
+                MySQLInterface.ExecutePreparedStatement(ps);
+                //Output the Stack if error is found
+            } catch (SQLException ex) {
+                System.out.println("Error during insert of account ID, Stack follows: " + ex.getMessage() + ex.getSQLState());
+                ex.printStackTrace();
             }
         }
-    }
 
     //Static method useful for retrieving all the people in the Persons table and creating a Person object for each
     // It then returns an array of Person objects
